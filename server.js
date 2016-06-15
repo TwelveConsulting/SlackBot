@@ -146,7 +146,7 @@ controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, mes
                         ],
                         "footer": "Twelve consulting",
                         "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
-                      }
+                      }]
                   }
                 convo.say(reply_with_attachments);
           }
