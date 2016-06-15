@@ -152,7 +152,7 @@ controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, mes
           }
     bot.startConversation(message, askFlavor);
 
-        }
+
 });
 
 app.post('/conges', conges.execute);
