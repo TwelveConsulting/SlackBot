@@ -1,10 +1,10 @@
 var org = require('./auth').org,
 
-    CONGES_TOKEN = process.env.SLACK_CONGES_TOKEN;
+    SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 
 function execute(req, res) {
 
-    if (req.body.token != CONGES_TOKEN) {
+    if (req.body.token != SLACK_BOT_TOKEN) {
          res.send("Invalid token");
          return;
     }
@@ -18,7 +18,7 @@ function execute(req, res) {
     fields.push({title: "CP N", value: 9, short:true});
     fields.push({title: "RTT", value: 1, short:true});
     fields.push({title: "RTT E", value: 1, short:true});
-    attachments.push({color: "#FCB95B", fields: fields});
+    attachments.push({color: "#F7CAC9", fields: fields});
     res.json({
         response_type: "in_channel",
         text: "Solde : 11 jours",
