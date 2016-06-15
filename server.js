@@ -68,6 +68,89 @@ controller.hears(['conges'], 'direct_message', (bot, message) => {
   bot.reply(message, reply_with_attachments);
 });
 
+controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
+        var boolReunion= false;
+        askReserver = function(reponse, convo) {
+          convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting?', function(reponse, convo){
+           var value = convo.extractResponse('0');
+           if (value == false) {
+             convo.say('OK désolé de vous avoir dérangé(e)');
+             convo.stop();
+           }
+           else {
+             boolReunion = true ;
+             askDate(response, convo);
+             convo.next();
+           }
+          });
+        }
+        askDate = function(response, convo) {
+            convo.ask('A quelle date?', function(response, convo) {
+              convo.say('Ok.')
+              askHeureDebut(response, convo);
+              convo.next();
+              });
+            }
+        askHeureDebut = function(response, convo) {
+          convo.ask('Quelle heure de début?', function(response, convo) {
+            convo.say('Ok.');
+            askHeureFin(reponse,convo);
+            convo.next();
+            });
+          }
+          askHeureFin = function(response, convo) {
+            convo.ask('Quelle heure de fin?', function(response, convo) {
+              convo.say('Ok.');
+              askNom(reponse,convo);
+              convo.next();
+              });
+            }
+          askNom = function(response, convo) {
+            convo.ask('A quel nom dois-je mettre la réunion?', function(response, convo) {
+              convo.say('Ok.');
+              printReunion(reponse,convo);
+              convo.next();
+              });
+            }
+          printReunion = function(response, convo) {
+            var jour = convo.extractResponse('1');
+            var hDeb = convo.extractResponse('2');
+            var hFin = convo.extractResponse('3');
+            var nom = convo.extractResponse('4');
+          }
+    bot.startConversation(message, askFlavor);
+    var reply_with_attachments = {
+      'text': `Ok, voici le rendez vous pris.`,
+      "attachments": [ {
+                "fallback": "RDV",
+                "color": "#f7cac9",
+
+                "title": "Rendez-vous Salle Twelve",
+
+                "fields": [
+                    {   "title": "Jour",
+                        "value": jour,
+                         "short":
+                    },
+                    {   "title": "Début",
+                        "value": hDeb,
+                        "short": "true"
+                    },
+                    {   "title": "Fin",
+                        "value": hFin,
+                        "short": "true"
+                    }
+                    {   "title": "Organisateur",
+                        "value": nom,
+                        "short": 
+                    }
+                ],
+                "footer": "Twelve consulting",
+                "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
+              }
+
+
+});
 
 app.post('/conges', conges.execute);
 
