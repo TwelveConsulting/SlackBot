@@ -24,6 +24,12 @@
         "required":false
 
     },
+    "SLACK_BOT_TOKEN": {
+        "description": "Slack token for the bot",
+        "value":"",
+        "required":false
+
+    },
     "SLACK_CONTACT_TOKEN": {
         "description": "Slack token for the contact slash command",
         "value":"",

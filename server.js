@@ -33,12 +33,41 @@ controller.hears(['hello'], 'direct_message,direct_mention,mention', (bot,messag
       })
 });
 
-controller.hears(['conges'], 'direct_message,direct_mention,mention', (bot, message) => {
-    bot.reply(message, {
-        text: `Ok, voila tes congés.`
-    })
-    app.post('/conges', conges.execute);
+controller.hears(['conges'], 'direct_message', (bot, message) => {
+  var reply_with_attachments = {
+  'text': `Ok, voila tes congés.`,
+  "attachments": [ {
+            "fallback": "Jours de congés restants",
+            "color": "#dd4124",
+
+            "title": "Congés",
+            "title_link": "https://twelve.my.salesforce.com/?ec=302&startURL=%2Fhome%2Fhome.jsp",
+
+            "text": "Voici votre solde de congés : 11",
+
+            "fields": [
+                {   "title": "CP N",
+                    "value": "9",
+                     "short":"true"
+                },
+                {   "title": "RTT",
+                    "value": "1",
+                    "short": "true"
+                },
+                {   "title": "RTT E",
+                    "value": "1",
+                    "short": "true"
+                }
+            ],
+            "footer": "Twelve consulting",
+            "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
+          }
+        ]
+    }
+
+  bot.reply(message, reply_with_attachments);
 });
+
 
 app.post('/conges', conges.execute);
 
