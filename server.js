@@ -129,7 +129,7 @@ controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, mes
                         "fields": [
                             {   "title": "Jour",
                                 "value": jour,
-                                 "short":
+                                 "short":"true"
                             },
                             {   "title": "Début",
                                 "value": hDeb,
@@ -141,7 +141,7 @@ controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, mes
                             }
                             {   "title": "Organisateur",
                                 "value": nom,
-                                "short":
+                                "short": "true"
                             }
                         ],
                         "footer": "Twelve consulting",
