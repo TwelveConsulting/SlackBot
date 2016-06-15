@@ -117,38 +117,43 @@ controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, mes
             var hDeb = convo.extractResponse('2');
             var hFin = convo.extractResponse('3');
             var nom = convo.extractResponse('4');
+
+            var reply_with_attachments = {
+              'text': `Ok, voici le rendez vous pris.`,
+              "attachments": [ {
+                        "fallback": "RDV",
+                        "color": "#f7cac9",
+
+                        "title": "Rendez-vous Salle Twelve",
+
+                        "fields": [
+                            {   "title": "Jour",
+                                "value": jour,
+                                 "short":
+                            },
+                            {   "title": "Début",
+                                "value": hDeb,
+                                "short": "true"
+                            },
+                            {   "title": "Fin",
+                                "value": hFin,
+                                "short": "true"
+                            }
+                            {   "title": "Organisateur",
+                                "value": nom,
+                                "short":
+                            }
+                        ],
+                        "footer": "Twelve consulting",
+                        "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
+                      }
+
+                      convo.say(reply_with_attachments);
+
+                  }
           }
     bot.startConversation(message, askFlavor);
-    var reply_with_attachments = {
-      'text': `Ok, voici le rendez vous pris.`,
-      "attachments": [ {
-                "fallback": "RDV",
-                "color": "#f7cac9",
 
-                "title": "Rendez-vous Salle Twelve",
-
-                "fields": [
-                    {   "title": "Jour",
-                        "value": jour,
-                         "short":
-                    },
-                    {   "title": "Début",
-                        "value": hDeb,
-                        "short": "true"
-                    },
-                    {   "title": "Fin",
-                        "value": hFin,
-                        "short": "true"
-                    }
-                    {   "title": "Organisateur",
-                        "value": nom,
-                        "short":
-                    }
-                ],
-                "footer": "Twelve consulting",
-                "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
-              }
-          }
         }
 });
 
