@@ -142,14 +142,14 @@ controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, mes
                     }
                     {   "title": "Organisateur",
                         "value": nom,
-                        "short": 
+                        "short":
                     }
                 ],
                 "footer": "Twelve consulting",
                 "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
               }
-
-
+          }
+        }
 });
 
 app.post('/conges', conges.execute);
