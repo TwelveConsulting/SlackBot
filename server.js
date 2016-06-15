@@ -138,7 +138,7 @@ controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, mes
                             {   "title": "Fin",
                                 "value": hFin,
                                 "short": "true"
-                            }
+                            },
                             {   "title": "Organisateur",
                                 "value": nom,
                                 "short": "true"
