@@ -1,6 +1,6 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
-    auth = require('./modules/auth'),
+    //auth = require('./modules/auth'),
     conges = require('./modules/conges'),
     app = express();
 
@@ -8,7 +8,7 @@ const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 
 var Botkit = require('botkit'),
     formatter = require('./modules/slack-formatter'),
-    salesforce = require('./modules/salesforce'),
+    //salesforce = require('./modules/salesforce'),
 
     controller = Botkit.slackbot(),
 
