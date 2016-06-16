@@ -68,7 +68,7 @@ bodyParser = require('body-parser'),
     });
 
 
-    controller.hears(['question me'], 'message_received', function(bot,message) {
+    controller.hears(['question me'], 'message_received,direct_message,direct_mention', function(bot,message) {
 
        // start a conversation to handle this response.
       bot.startConversation(message,function(err,convo) {
@@ -83,7 +83,7 @@ bodyParser = require('body-parser'),
       })
 
     });
-    
+
     controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
         askReserver = function(reponse, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
