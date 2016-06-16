@@ -93,19 +93,17 @@ bodyParser = require('body-parser'),
              convo.stop();
            }
            else {
-             convo.say('La réponse est :' + response1.text );
-             //askDate(response, convo);
+             askDate(response2, convo);
              convo.next();
            }
         });
-        /*}
-      askDate = function(response, convo) {
-        convo.ask('A quelle date?', function(response, convo) {
-          convo.say('Ok.')
-          askHeureDebut(response, convo);
+      askDate = function(response2, convo) {
+        convo.ask('A quelle date?', function(response2, convo) {
+          convo.say('Ok. La reunion aura lieu le ' + response1.text)
+          askHeureDebut(response3, convo);
           convo.next();
       });
-      }
+    }/*
       askHeureDebut = function(response, convo) {
         convo.ask('Quelle heure de début?', function(response, convo) {
           convo.say('Ok.');
