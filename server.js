@@ -33,6 +33,9 @@ bodyParser = require('body-parser'),
       })
     });
 
+
+// Congés Restants
+
     controller.hears(['conges'], 'direct_message', (bot, message) => {
       var reply_with_attachments = {
         'text': `Ok, voila tes congés.`,
@@ -68,21 +71,7 @@ bodyParser = require('body-parser'),
     });
 
 
-    controller.hears(['question me'], 'message_received,direct_message,direct_mention', function(bot,message) {
-
-       // start a conversation to handle this response.
-      bot.startConversation(message,function(err,convo) {
-
-        convo.ask('How are you?',function(response,convo) {
-
-          convo.say('Cool, you said: ' + response.text);
-          convo.next();
-
-        });
-
-      })
-
-    });
+// Salle de Réunion
 
     controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
         var value ;
@@ -165,6 +154,42 @@ bodyParser = require('body-parser'),
       }
       bot.startConversation(message, askReserver);
     });
+
+// Time sheets ( test d'arbre de conversation )
+
+  /*controller.hears(['timesheets'], 'direct_message', (bot, message) => {
+    askTimesheets = function(response, convo) {
+      var attachment_timesheethier = {
+        "attachements": [{
+          "fallback": "Time Sheet",
+          "color": "#e8878e",
+          "title": 'Time Sheet d\'hier',
+          "fields": [
+            { "title": "Matin"
+              "value": "Mission - BPI cadrage CRM"
+              "short": "true"
+            };
+            { "title": "Après-Midi"
+              "value": "Développement Offre - Acculturation Digitale"
+              "short": "true"
+            }
+          ]
+        }]
+      }
+      convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' + attachment_timesheethier, function(response, convo){
+
+        if (response.text == 'non') {
+          convo.say('OK désolé de vous avoir dérangé(e)');
+          convo.stop();
+        }
+        else {
+          askDate(response, convo);
+          convo.next();
+        }
+      });
+    }
+    bot.startConversation(message, askTimesheets);
+  });*/
 
     app.post('/conges', conges.execute);
 
