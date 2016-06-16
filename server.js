@@ -78,10 +78,7 @@ bodyParser = require('body-parser'),
         askReserver = function(response1, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
             if (response.text == 'non') {
-              convo.next();
               convo.say('OK désolé de vous avoir dérangé(e)');
-              convo.next();
-              convo.stop();
             }
             else {
               askDate(response, convo);
