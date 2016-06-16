@@ -309,7 +309,7 @@ bodyParser = require('body-parser'),
         };
         convo.say('Ok je remplis vos timesheets d\'aujourd\'hui'+ attachment_timesheetajd);
         convo.next();    
-      });
+      };
     bot.startConversation(message, askTimesheets);
   });
 
