@@ -103,7 +103,7 @@ bodyParser = require('body-parser'),
           convo.ask('A quelle date?', function(response, convo) {
             value = { 'date' : response.text };
             convo.say('Ok. La reunion aura lieu le ' + value.date)
-            askHeureDebut(response3, convo);
+            askHeureDebut(response, convo);
             convo.next();
           });
         }
