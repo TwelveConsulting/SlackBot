@@ -164,12 +164,12 @@ bodyParser = require('body-parser'),
           "color": "#e8878e",
           "title": 'Time Sheets du 16 juin',
           "fields": [
-            { "title": "Matin"
-              "value": "9" //"Mission - BPI cadrage CRM"
+            { "title": "Matin",
+              "value": "Mission - BPI cadrage CRM",
               "short": "true"
             };
-            { "title": "Après-Midi"
-              "value": "9" //"Développement Offre - Acculturation Digitale"
+            { "title": "Après-Midi",
+              "value": "Développement Offre - Acculturation Digitale",
               "short": "true"
             }
           ]
@@ -184,12 +184,12 @@ bodyParser = require('body-parser'),
               "color": "#e8878e",
               "title": 'Time Sheets du 16 juin',
               "fields": [
-                { "title": "Matin"
-                  "value": "Mission - BPI cadrage CRM"
+                { "title": "Matin",
+                  "value": "Mission - BPI cadrage CRM",
                   "short": "true"
                 };
-                { "title": "Après-Midi"
-                  "value": "Développement Offre - Acculturation Digitale"
+                { "title": "Après-Midi",
+                  "value": "Développement Offre - Acculturation Digitale",
                   "short": "true"
                 }
               ]
@@ -291,12 +291,12 @@ bodyParser = require('body-parser'),
               "color": "#e8878e",
               "title": 'Time Sheets du 16 juin',
               "fields": [
-                { "title": "Matin"
-                  "value": timesheet.matin
+                { "title": "Matin",
+                  "value": timesheet.matin,
                   "short": "true"
                 };
-                { "title": "Après-Midi"
-                  "value": timesheet.apresmidi
+                { "title": "Après-Midi",
+                  "value": timesheet.apresmidi,
                   "short": "true"
                 }
               ]
