@@ -70,7 +70,7 @@ bodyParser = require('body-parser'),
     controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
         askReserver = function(reponse, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
-           var value = convo.extractResponse(0);
+           //var value = convo.extractResponse(0);
            convo.say(response.text);
            /*if (value == "non") {
              convo.say('OK désolé de vous avoir dérangé(e)');
