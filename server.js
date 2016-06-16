@@ -165,11 +165,11 @@ bodyParser = require('body-parser'),
           "title": 'Time Sheets du 16 juin',
           "fields": [
             { "title": "Matin"
-              "value": "Mission - BPI cadrage CRM"
+              "value": "9" //"Mission - BPI cadrage CRM"
               "short": "true"
             };
             { "title": "Après-Midi"
-              "value": "Développement Offre - Acculturation Digitale"
+              "value": "9" //"Développement Offre - Acculturation Digitale"
               "short": "true"
             }
           ]
