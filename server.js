@@ -167,7 +167,7 @@ bodyParser = require('body-parser'),
             { "title": "Matin",
               "value": "Mission - BPI cadrage CRM",
               "short": "true"
-            }
+            },
             { "title": "Après-Midi",
               "value": "Développement Offre - Acculturation Digitale",
               "short": "true"
@@ -187,7 +187,7 @@ bodyParser = require('body-parser'),
                 { "title": "Matin",
                   "value": "Mission - BPI cadrage CRM",
                   "short": "true"
-                };
+                },
                 { "title": "Après-Midi",
                   "value": "Développement Offre - Acculturation Digitale",
                   "short": "true"
@@ -294,7 +294,7 @@ bodyParser = require('body-parser'),
                 { "title": "Matin",
                   "value": timesheet.matin,
                   "short": "true"
-                };
+                },
                 { "title": "Après-Midi",
                   "value": timesheet.apresmidi,
                   "short": "true"
