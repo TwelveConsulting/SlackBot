@@ -70,8 +70,9 @@ bodyParser = require('body-parser'),
     controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
         askReserver = function(reponse, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(reponse, convo){
-           var value = convo.extractResponse('1');
-           if (value == "non") {
+           var value = convo.extractResponse(0);
+           convo.say(message, value);
+           /*if (value == "non") {
              convo.say('OK désolé de vous avoir dérangé(e)');
              convo.stop();
            }
@@ -79,8 +80,8 @@ bodyParser = require('body-parser'),
              askDate(response, convo);
              convo.next();
            }
-          });
-        }
+          */});
+        /*}
       askDate = function(response, convo) {
         convo.ask('A quelle date?', function(response, convo) {
           convo.say('Ok.')
@@ -143,7 +144,7 @@ bodyParser = require('body-parser'),
           }]
         };
         convo.say(message,reply_with_attachments);
-      }
+      }*/
       bot.startConversation(message, askReserver);
     });
 
