@@ -221,7 +221,7 @@ bodyParser = require('body-parser'),
               };
               convo.next();
               }
-            }
+            },
             {
               pattern: '2',
               callback: function(response,convo) {
@@ -264,7 +264,7 @@ bodyParser = require('body-parser'),
               };
               convo.next();
               }
-            }
+            },
             {
               pattern: '2',
               callback: function(response,convo) {
