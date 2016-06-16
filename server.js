@@ -175,7 +175,9 @@ bodyParser = require('body-parser'),
           ]
         }]
       }
-      convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' + attachment_timesheethier, function(response, convo){
+      convo.say(attachment_timesheethier);
+      convo.next();
+      convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
         var timesheet;
         if (response.text == 'oui') {
           var attachment_timesheetajd = {
