@@ -94,7 +94,6 @@ bodyParser = require('body-parser'),
               convo.stop();
             }
             else {
-              value = { 'text' : response.text };
               askDate(response, convo);
               convo.next();
            }
@@ -102,7 +101,8 @@ bodyParser = require('body-parser'),
         }
         askDate = function(response, convo) {
           convo.ask('A quelle date?', function(response, convo) {
-            convo.say('Ok. La reunion aura lieu le ' + value.text)
+            value = { 'date' : response.text };
+            convo.say('Ok. La reunion aura lieu le ' + value.date)
             //askHeureDebut(response3, convo);
             convo.next();
         });
