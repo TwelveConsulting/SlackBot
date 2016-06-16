@@ -158,7 +158,7 @@ bodyParser = require('body-parser'),
 
   controller.hears(['timesheets'], 'direct_message', (bot, message) => {
     askTimesheets = function(response, convo) {
-      var attachment_timesheethier = {
+      var reply_with_attachments = {
         "attachements": [{
           "fallback": "Time Sheets",
           "color": "#e8878e",
@@ -179,7 +179,7 @@ bodyParser = require('body-parser'),
         }]
       };
       convo.next()
-      convo.say(attachment_timesheethier);
+      convo.say(reply_with_attachments);
       convo.next();
       convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
         var timesheet;
