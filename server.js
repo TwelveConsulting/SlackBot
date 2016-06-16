@@ -85,6 +85,7 @@ bodyParser = require('body-parser'),
     });
 
     controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
+        var value ;
         askReserver = function(response1, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
 
@@ -93,7 +94,7 @@ bodyParser = require('body-parser'),
               convo.stop();
             }
             else {
-              var value = { 'text' : response.text };
+              value = { 'text' : response.text };
               askDate(response, convo);
               convo.next();
            }
