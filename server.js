@@ -80,7 +80,7 @@ bodyParser = require('body-parser'),
              askDate(response, convo);
              convo.next();
            }
-          */});
+        */});
         /*}
       askDate = function(response, convo) {
         convo.ask('A quelle date?', function(response, convo) {
@@ -143,8 +143,8 @@ bodyParser = require('body-parser'),
             "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
           }]
         };
-        convo.say(message,reply_with_attachments);
-      }*/
+        convo.say(message,reply_with_attachments);*/
+      }
       bot.startConversation(message, askReserver);
     });
 
