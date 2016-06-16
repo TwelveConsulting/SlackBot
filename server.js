@@ -178,11 +178,8 @@ bodyParser = require('body-parser'),
           "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
         }]
       };
-      convo.next()
-      convo.say(reply_with_attachments);
-      convo.next();
-      /*convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
-        var timesheet;
+      convo.ask(reply_with_attachments + 'Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
+        /*var timesheet;
         if (response.text == 'oui') {
           var attachment_timesheetajd = {
             "attachements": [{
@@ -314,6 +311,7 @@ bodyParser = require('body-parser'),
         convo.next();    
       });*/
     };
+    convo.next();
     bot.startConversation(message, askTimesheets);
   });
 
