@@ -174,7 +174,7 @@ bodyParser = require('body-parser'),
             }
           ]
         }]
-      }
+      };
       convo.say(attachment_timesheethier);
       convo.next();
       convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
