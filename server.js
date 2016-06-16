@@ -88,8 +88,9 @@ bodyParser = require('body-parser'),
         askReserver = function(response, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
            var value = reponse.text;
+           convo.say('La réponse est :' + value);
 
-           if (value == 'non') {
+           /*if (value == 'non') {
              convo.say('OK désolé de vous avoir dérangé(e)');
              convo.stop();
            }
