@@ -67,6 +67,23 @@ bodyParser = require('body-parser'),
       bot.reply(message, reply_with_attachments);
     });
 
+
+    controller.hears(['question me'], 'message_received', function(bot,message) {
+
+       // start a conversation to handle this response.
+      bot.startConversation(message,function(err,convo) {
+
+        convo.ask('How are you?',function(response,convo) {
+
+          convo.say('Cool, you said: ' + response.text);
+          convo.next();
+
+        });
+
+      })
+
+    });
+    
     controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
         askReserver = function(reponse, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
