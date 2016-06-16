@@ -86,25 +86,24 @@ bodyParser = require('body-parser'),
 
     controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
         askReserver = function(response1, convo) {
-          convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response1, convo){
+          convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
 
-           if (response1.text == 'non') {
+           if (response.text == 'non') {
              convo.say('OK désolé de vous avoir dérangé(e)');
              convo.stop();
            }
            else {
-             var value = { 'text' : response1.text };
-             convo.say(value);
-             //askDate(response1, convo);
+             var value = { 'text' : response.text };
+             askDate(response, convo);
              convo.next();
            }
         });
-      /*askDate = function(response2, convo) {
-        convo.ask('A quelle date?', function(response2, convo) {
-          convo.say('Ok. La reunion aura lieu le ' + response1.text)
-          askHeureDebut(response3, convo);
+      askDate = function(response, convo) {
+        convo.ask('A quelle date?', function(response, convo) {
+          convo.say('Ok. La reunion aura lieu le ' + value)
+          //askHeureDebut(response3, convo);
           convo.next();
-      });*/
+      });
     /*
       askHeureDebut = function(response, convo) {
         convo.ask('Quelle heure de début?', function(response, convo) {
