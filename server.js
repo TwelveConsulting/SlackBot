@@ -241,7 +241,7 @@ bodyParser = require('body-parser'),
               };
               convo.next();
               }
-            }]
+            }]);
             convo.ask('D\'accord, qu\'avez vous fait cet après-midi ? (Répondez par 1, 2, 3 ... en fonction)'
             +'\n'+'1 - Mission'
             +'\n'+'2 - Développement Commercial'
