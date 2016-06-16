@@ -69,7 +69,7 @@ controller.hears(['conges'], 'direct_message', (bot, message) => {
 });
 
 controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
-        var boolReunion= false;
+        /*var boolReunion= false;
         askReserver = function(reponse, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting?', function(reponse, convo){
            var value = convo.extractResponse('0');
@@ -83,7 +83,7 @@ controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, mes
              convo.next();
            }
           });
-        }
+        }*/
         askDate = function(response, convo) {
             convo.ask('A quelle date?', function(response, convo) {
               convo.say('Ok.')
