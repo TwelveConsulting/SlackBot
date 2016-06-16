@@ -155,7 +155,7 @@ bodyParser = require('body-parser'),
     });
 
 // Time sheets ( test d'arbre de conversation )
-
+/*
   controller.hears(['timesheets'], 'direct_message', (bot, message) => {
     askTimesheets = function(response, convo) {
       var reply_with_attachments = {
@@ -209,7 +209,7 @@ bodyParser = require('body-parser'),
             +'\n'+'4 - Développement Offre'
             +'\n'+'5 - Administratif'
             +'\n'+'6 - Absence',*/
-            [{
+           /* [{
               pattern: '1',
               callback: function(response,convo) {
               convo.ask('D\'accord, sur laquelle ?'
@@ -252,7 +252,7 @@ bodyParser = require('body-parser'),
             +'\n'+'4 - Développement Offre'
             +'\n'+'5 - Administratif'
             +'\n'+'6 - Absence',*/
-            [{
+           /* [{
               pattern: '1',
               callback: function(response,convo) {
               convo.ask('D\'accord, sur laquelle ?'
@@ -312,6 +312,8 @@ bodyParser = require('body-parser'),
       };
     bot.startConversation(message, askTimesheets);
   });
+*/
+
 
     app.post('/conges', conges.execute);
 
