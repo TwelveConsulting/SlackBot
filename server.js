@@ -94,7 +94,7 @@ bodyParser = require('body-parser'),
               convo.stop();
             }
             else {
-              value = { 'text' : response.text };
+              value = "yes";//{ 'text' : response.text }"";
               askDate(response, convo);
               convo.next();
            }
