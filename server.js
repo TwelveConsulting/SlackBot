@@ -103,14 +103,16 @@ bodyParser = require('body-parser'),
           convo.ask('A quelle date?', function(response, convo) {
             value = { 'date' : response.text };
             convo.say('Ok. La reunion aura lieu le ' + value.date)
-            //askHeureDebut(response3, convo);
+            askHeureDebut(response3, convo);
             convo.next();
-        });
-    /*
-      askHeureDebut = function(response, convo) {
+          });
+        }
+      
+    askHeureDebut = function(response, convo) {
         convo.ask('Quelle heure de début?', function(response, convo) {
-          convo.say('Ok.');
-          askHeureFin(reponse,convo);
+          value.timeD = reponse.text;
+          convo.say('Ok.' + value.timeD);
+          //askHeureFin(reponse,convo);
           convo.next();
         });
       }
@@ -161,7 +163,7 @@ bodyParser = require('body-parser'),
             "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
           }]
         };
-        convo.say(message,reply_with_attachments);*/
+        convo.say(message,reply_with_attachments);
       }
       bot.startConversation(message, askReserver);
     });
