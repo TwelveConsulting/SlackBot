@@ -85,15 +85,15 @@ bodyParser = require('body-parser'),
     });
 
     controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
-        askReserver = function(response, convo) {
-          convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
+        askReserver = function(response1, convo) {
+          convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response1, convo){
 
-           if (response.text == 'non') {
+           if (response1.text == 'non') {
              convo.say('OK désolé de vous avoir dérangé(e)');
              convo.stop();
            }
            else {
-             convo.say('La réponse est :' + response.text );
+             convo.say('La réponse est :' + response1.text );
              //askDate(response, convo);
              convo.next();
            }
