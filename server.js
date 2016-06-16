@@ -156,13 +156,13 @@ bodyParser = require('body-parser'),
 
 // Time sheets ( test d'arbre de conversation )
 
-  /*controller.hears(['timesheets'], 'direct_message', (bot, message) => {
+  controller.hears(['timesheets'], 'direct_message', (bot, message) => {
     askTimesheets = function(response, convo) {
       var attachment_timesheethier = {
         "attachements": [{
-          "fallback": "Time Sheet",
+          "fallback": "Time Sheets",
           "color": "#e8878e",
-          "title": 'Time Sheet d\'hier',
+          "title": 'Time Sheets du 16 juin',
           "fields": [
             { "title": "Matin"
               "value": "Mission - BPI cadrage CRM"
@@ -176,19 +176,138 @@ bodyParser = require('body-parser'),
         }]
       }
       convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' + attachment_timesheethier, function(response, convo){
-
-        if (response.text == 'non') {
-          convo.say('OK désolé de vous avoir dérangé(e)');
-          convo.stop();
-        }
-        else {
-          askDate(response, convo);
+        var timesheet;
+        if (response.text == 'oui') {
+          var attachment_timesheetajd = {
+            "attachements": [{
+              "fallback": "Time Sheets",
+              "color": "#e8878e",
+              "title": 'Time Sheets du 16 juin',
+              "fields": [
+                { "title": "Matin"
+                  "value": "Mission - BPI cadrage CRM"
+                  "short": "true"
+                };
+                { "title": "Après-Midi"
+                  "value": "Développement Offre - Acculturation Digitale"
+                  "short": "true"
+                }
+              ]
+            }]
+          }
+          convo.say('Ok je remplis vos timesheets d\'aujourd\'hui'+ attachment_timesheetajd);
           convo.next();
         }
+        else {
+          convo.ask('D\'accord, qu\'avez vous fait ce matin ? (Répondez par 1, 2, 3 ... en fonction)'
+            +'\n'+'1 - Mission'
+            +'\n'+'2 - Développement Commercial'
+            /*+'\n'+'3 - Développement Partenariat'
+            +'\n'+'4 - Développement Offre'
+            +'\n'+'5 - Administratif'
+            +'\n'+'6 - Absence',*/
+            [{
+              pattern: '1',
+              callback: function(response,convo) {
+              convo.ask('D\'accord, sur laquelle ?'
+                +'\n'+'1 - Mission - BPI Cadrage CRM'
+                +'\n'+'2 - Mission - IPSEN CI News');
+              switch(response.text) {
+                case '1':
+                  timesheet.matin = "Mission - BPI Cadrage CRM"
+                  break;
+                default:
+                  timesheet.matin = "Mission - IPSEN CI News"
+              };
+              convo.next();
+              });
+            }
+            {
+              pattern: '2',
+              callback: function(response,convo) {
+              convo.ask('D\'accord, sur laquelle ?'
+                +'\n'+'1 - Développement Commercial - DEVIALET'
+                +'\n'+'2 - Développement Commercial - ABENEX'
+                +'\n'+'2 - Développement Commercial - KLEPIERRE');
+              switch(response.text) {
+                case '1':
+                  timesheet.matin = "Développement Commercial - DEVIALET"
+                  break;
+                case '2':
+                  timesheet.matin = "Développement Commercial - ABENEX"
+                  break;
+                default:
+                  timesheet.matin = "Développement Commercial - KLEPIERRE"
+              };
+              convo.next();
+              });
+            }]
+            convo.ask('D\'accord, qu\'avez vous fait cet après-midi ? (Répondez par 1, 2, 3 ... en fonction)'
+            +'\n'+'1 - Mission'
+            +'\n'+'2 - Développement Commercial'
+            /*+'\n'+'3 - Développement Partenariat'
+            +'\n'+'4 - Développement Offre'
+            +'\n'+'5 - Administratif'
+            +'\n'+'6 - Absence',*/
+            [{
+              pattern: '1',
+              callback: function(response,convo) {
+              convo.ask('D\'accord, sur laquelle ?'
+                +'\n'+'1 - Mission - BPI Cadrage CRM'
+                +'\n'+'2 - Mission - IPSEN CI News');
+              switch(response.text) {
+                case '1':
+                  timesheet.apresmidi = "Mission - BPI Cadrage CRM"
+                  break;
+                default:
+                  timesheet.apresmidi = "Mission - IPSEN CI News"
+              };
+              convo.next();
+              });
+            }
+            {
+              pattern: '2',
+              callback: function(response,convo) {
+              convo.ask('D\'accord, sur laquelle ?'
+                +'\n'+'1 - Développement Commercial - DEVIALET'
+                +'\n'+'2 - Développement Commercial - ABENEX'
+                +'\n'+'2 - Développement Commercial - KLEPIERRE');
+              switch(response.text) {
+                case '1':
+                  timesheet.apresmidi = "Développement Commercial - DEVIALET"
+                  break;
+                case '2':
+                  timesheet.apresmidi = "Développement Commercial - ABENEX"
+                  break;
+                default:
+                  timesheet.apresmidi = "Développement Commercial - KLEPIERRE"
+              };
+              convo.next();
+              });
+            }]
+        var attachment_timesheetajd = {
+            "attachements": [{
+              "fallback": "Time Sheets",
+              "color": "#e8878e",
+              "title": 'Time Sheets du 16 juin',
+              "fields": [
+                { "title": "Matin"
+                  "value": timesheet.matin
+                  "short": "true"
+                };
+                { "title": "Après-Midi"
+                  "value": timesheet.apresmidi
+                  "short": "true"
+                }
+              ]
+            }]
+          }
+          convo.say('Ok je remplis vos timesheets d\'aujourd\'hui'+ attachment_timesheetajd);
+          convo.next();    
       });
     }
     bot.startConversation(message, askTimesheets);
-  });*/
+  });
 
     app.post('/conges', conges.execute);
 
