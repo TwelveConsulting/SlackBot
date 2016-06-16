@@ -220,7 +220,7 @@ bodyParser = require('body-parser'),
                   timesheet.matin = "Mission - IPSEN CI News"
               };
               convo.next();
-              });
+              };
             }
             {
               pattern: '2',
@@ -240,7 +240,7 @@ bodyParser = require('body-parser'),
                   timesheet.matin = "Développement Commercial - KLEPIERRE"
               };
               convo.next();
-              });
+              };
             }]
             convo.ask('D\'accord, qu\'avez vous fait cet après-midi ? (Répondez par 1, 2, 3 ... en fonction)'
             +'\n'+'1 - Mission'
@@ -263,7 +263,7 @@ bodyParser = require('body-parser'),
                   timesheet.apresmidi = "Mission - IPSEN CI News"
               };
               convo.next();
-              });
+              };
             }
             {
               pattern: '2',
@@ -283,7 +283,7 @@ bodyParser = require('body-parser'),
                   timesheet.apresmidi = "Développement Commercial - KLEPIERRE"
               };
               convo.next();
-              });
+              };
             }]
         var attachment_timesheetajd = {
             "attachements": [{
