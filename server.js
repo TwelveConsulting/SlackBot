@@ -80,6 +80,7 @@ bodyParser = require('body-parser'),
 
             if (response.text == 'non') {
               convo.say('OK désolé de vous avoir dérangé(e)');
+              convo.next();
               convo.stop();
             }
             else {
