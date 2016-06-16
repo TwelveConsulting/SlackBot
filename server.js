@@ -284,27 +284,29 @@ bodyParser = require('body-parser'),
               };
               convo.next();
               }
-            }]);
-        var attachment_timesheetajd = {
-            "attachements": [{
-              "fallback": "Time Sheets",
-              "color": "#e8878e",
-              "title": 'Time Sheets du 16 juin',
-              "fields": [
-                { "title": "Matin",
-                  "value": timesheet.matin,
-                  "short": "true"
-                },
-                { "title": "Après-Midi",
-                  "value": timesheet.apresmidi,
-                  "short": "true"
-                }
-              ]
             }]
-          };
-          convo.say('Ok je remplis vos timesheets d\'aujourd\'hui'+ attachment_timesheetajd);
-          convo.next();    
-      };
+          );
+        }
+        var attachment_timesheetajd = {
+          "attachements": [{
+            "fallback": "Time Sheets",
+            "color": "#e8878e",
+            "title": 'Time Sheets du 16 juin',
+            "fields": [
+              { "title": "Matin",
+                "value": timesheet.matin,
+                "short": "true"
+              },
+              { "title": "Après-Midi",
+                "value": timesheet.apresmidi,
+                "short": "true"
+              }
+            ]
+          }]
+        };
+        convo.say('Ok je remplis vos timesheets d\'aujourd\'hui'+ attachment_timesheetajd);
+        convo.next();    
+      });
     }
     bot.startConversation(message, askTimesheets);
   });
