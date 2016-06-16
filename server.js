@@ -173,8 +173,12 @@ bodyParser = require('body-parser'),
               "short": "true"
             }
           ]
+          ,
+          "footer": "Twelve consulting",
+          "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
         }]
       };
+      convo.next()
       convo.say(attachment_timesheethier);
       convo.next();
       convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
