@@ -68,16 +68,14 @@ bodyParser = require('body-parser'),
     });
 
     controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
-        var boolReunion= false;
         askReserver = function(reponse, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(reponse, convo){
-           var value = convo.extractResponse('0');
+           var value = convo.extractResponse('1');
            if (value == "non") {
              convo.say('OK désolé de vous avoir dérangé(e)');
              convo.stop();
            }
            else {
-             boolReunion = true ;
              askDate(response, convo);
              convo.next();
            }
