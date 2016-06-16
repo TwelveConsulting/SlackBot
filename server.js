@@ -181,7 +181,7 @@ bodyParser = require('body-parser'),
       convo.next()
       convo.say(reply_with_attachments);
       convo.next();
-      convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
+      /*convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
         var timesheet;
         if (response.text == 'oui') {
           var attachment_timesheetajd = {
@@ -212,7 +212,7 @@ bodyParser = require('body-parser'),
             +'\n'+'4 - Développement Offre'
             +'\n'+'5 - Administratif'
             +'\n'+'6 - Absence',*/
-            [{
+            /*[{
               pattern: '1',
               callback: function(response,convo) {
               convo.ask('D\'accord, sur laquelle ?'
@@ -255,7 +255,7 @@ bodyParser = require('body-parser'),
             +'\n'+'4 - Développement Offre'
             +'\n'+'5 - Administratif'
             +'\n'+'6 - Absence',*/
-            [{
+            /*[{
               pattern: '1',
               callback: function(response,convo) {
               convo.ask('D\'accord, sur laquelle ?'
@@ -312,8 +312,8 @@ bodyParser = require('body-parser'),
         };
         convo.say('Ok je remplis vos timesheets d\'aujourd\'hui'+ attachment_timesheetajd);
         convo.next();    
-      });
-    }
+      });*/
+    };
     bot.startConversation(message, askTimesheets);
   });
 
