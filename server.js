@@ -146,7 +146,7 @@ bodyParser = require('body-parser'),
         };
         convo.say(message,reply_with_attachments);
       }
-      bot.startConversation(message, askFlavor);
+      bot.startConversation(message, askReserver);
     });
 
     app.post('/conges', conges.execute);
