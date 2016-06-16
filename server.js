@@ -284,7 +284,7 @@ bodyParser = require('body-parser'),
               };
               convo.next();
               }
-            }]
+            }]);
         var attachment_timesheetajd = {
             "attachements": [{
               "fallback": "Time Sheets",
@@ -304,7 +304,7 @@ bodyParser = require('body-parser'),
           }
           convo.say('Ok je remplis vos timesheets d\'aujourd\'hui'+ attachment_timesheetajd);
           convo.next();    
-      });
+      };
     }
     bot.startConversation(message, askTimesheets);
   });
