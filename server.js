@@ -110,23 +110,23 @@ bodyParser = require('body-parser'),
       
     askHeureDebut = function(response, convo) {
         convo.ask('Quelle heure de début?', function(response, convo) {
-          value.timeD = reponse.text;
+          value.timeD = response.text;
           convo.say('Ok.' + value.timeD);
-          //askHeureFin(reponse,convo);
+          //askHeureFin(response,convo);
           convo.next();
         });
       }
       askHeureFin = function(response, convo) {
         convo.ask('Quelle heure de fin?', function(response, convo) {
           convo.say('Ok.');
-          askNom(reponse,convo);
+          askNom(response,convo);
           convo.next();
         });
       }
       askNom = function(response, convo) {
         convo.ask('A quel nom dois-je mettre la réunion?', function(response, convo) {
           convo.say('Ok.');
-          printReunion(reponse,convo);
+          printReunion(response,convo);
           convo.next();
         });
       }
