@@ -102,67 +102,65 @@ bodyParser = require('body-parser'),
         askDate = function(response, convo) {
           convo.ask('A quelle date?', function(response, convo) {
             value = { 'date' : response.text };
-            convo.say('Ok. La reunion aura lieu le ' + value.date)
+            //convo.say('Ok. La reunion aura lieu le ' + value.date)
             askHeureDebut(response, convo);
             convo.next();
           });
         }
       
-    askHeureDebut = function(response, convo) {
-        convo.ask('Quelle heure de début?', function(response, convo) {
-          value.timeD = response.text;
-          convo.say('Ok.' + value.timeD);
-          //askHeureFin(response,convo);
-          convo.next();
-        });
-      }
-      askHeureFin = function(response, convo) {
-        convo.ask('Quelle heure de fin?', function(response, convo) {
-          convo.say('Ok.');
-          askNom(response,convo);
-          convo.next();
-        });
-      }
-      askNom = function(response, convo) {
-        convo.ask('A quel nom dois-je mettre la réunion?', function(response, convo) {
-          convo.say('Ok.');
-          printReunion(response,convo);
-          convo.next();
-        });
-      }
-      printReunion = function(response, convo) {
-        var jour = convo.extractResponse('1');
-        var hDeb = convo.extractResponse('2');
-        var hFin = convo.extractResponse('3');
-        var nom = convo.extractResponse('4');
-        var reply_with_attachments = {
-          'text': `Ok, voici le rendez vous pris.`,
-          "attachments": [ {
-            "fallback": "RDV",
-            "color": "#f7cac9",
-            "title": "Rendez-vous Salle Twelve",
-            "fields": [
-              { "title": "Jour",
-                "value": jour,
-                "short":"true"
-              },
-              { "title": "Début",
-                "value": hDeb,
-                "short": "true"
-              },
-              { "title": "Fin",
-                "value": hFin,
-                "short": "true"
-              },
-              { "title": "Organisateur",
-                "value": nom,
-                "short": "true"
-              }
-            ],
-            "footer": "Twelve consulting",
-            "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
-          }]
-        };
+        askHeureDebut = function(response, convo) {
+          convo.ask('Quelle heure de début?', function(response, convo) {
+            value.hDeb = response.text;
+            //convo.say('Ok.' + value.hDeb);
+            askHeureFin(response,convo);
+            convo.next();
+          });
+        }
+        askHeureFin = function(response, convo) {
+          convo.ask('Quelle heure de fin?', function(response, convo) {
+            value.hFin = response.text;
+            //convo.say('Ok.');
+            askNom(response,convo);
+            convo.next();
+          });
+        }
+        askNom = function(response, convo) {
+          convo.ask('A quel nom dois-je mettre la réunion?', function(response, convo) {
+            value.nom = response.text;
+            //convo.say('Ok.');
+            printReunion(response,convo);
+            convo.next();
+          });
+        }
+        printReunion = function(response, convo) {
+          var reply_with_attachments = {
+            'text': `Ok, voici le rendez vous pris.`,
+            "attachments": [ {
+              "fallback": "RDV",
+              "color": "#f7cac9",
+              "title": "Rendez-vous Salle Twelve",
+              "fields": [
+                { "title": "Jour",
+                 "value": value.date,
+                 "short":"true"
+                },
+                { "title": "Début",
+                  "value": value.hDeb,
+                  "short": "true"
+                },
+                { "title": "Fin",
+                  "value": value.hFin,
+                  "short": "true"
+                },
+                { "title": "Organisateur",
+                  "value": value.nom,
+                  "short": "true"
+                }
+              ],
+              "footer": "Twelve consulting",
+              "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
+            }]
+         };
         convo.say(message,reply_with_attachments);
       }
       bot.startConversation(message, askReserver);
