@@ -273,7 +273,7 @@ bodyParser = require('body-parser'),
           "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
         }]
       };*/
-      bot.say(message, reply_with_attachments);
+      convo.say(reply_with_attachments);
     }
       /*convo.ask(reply_with_attachments + 'Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
         var timesheet;
