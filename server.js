@@ -440,7 +440,8 @@ moment().format();
 
   controller.hears(['date'], 'direct_message', (bot, message) => {
     var now = newDate();
-    bot.say(message,now);
+    var res = { "date": now};
+    bot.say(message,res);
   })
 
 
