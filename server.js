@@ -224,7 +224,7 @@ bodyParser = require('body-parser'),
 -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
   controller.hears(['timesheets'], 'direct_message', (bot, message) => {
-    var timesheet;
+    var timesheet = { "am": "" };
     askTimesheets = function(response, convo) {
       var reply_with_attachments = {
         'text': `Voici, ce que vous avez fait hier.`,
