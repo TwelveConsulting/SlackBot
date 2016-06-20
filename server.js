@@ -250,6 +250,7 @@ bodyParser = require('body-parser'),
       convo.say(reply_with_attachments);
       convo.next();
       convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
+      convo.next();
         if (response.text == 'oui') {
           var attachment_timesheetajd = {
             'text': `Je rentre ça dans le CRM.`,
