@@ -247,9 +247,9 @@ bodyParser = require('body-parser'),
         "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
         }]
       }
-      //convo.say(reply_with_attachments);
-    
-      convo.ask(reply_with_attachments + 'Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){});
+      convo.say(reply_with_attachments);
+      convo.next();
+      convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){});
      } 
         /*var timesheet;
         if (response.text == 'oui') {
