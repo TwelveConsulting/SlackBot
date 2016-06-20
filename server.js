@@ -292,26 +292,33 @@ bodyParser = require('body-parser'),
         switch(response.text){
           case 'a':
               timesheet.am = "Mission - BPI Cadrage CRM";
+              convo.next();
+              askApresMidi(response,convo);
+              convo.next();
               break;
           case 'b':
               timesheet.am = "Mission - IPSEN CI News";
+              convo.next();
+              askApresMidi(response,convo);
+              convo.next();
               break;
           case 'c':
               timesheet.am = "Developpement Offre - Acculturation Digitale";
+              convo.next();
+              askApresMidi(response,convo);
+              convo.next();
               break;
           case 'd':
               timesheet.am = "Mission - BPI Hub";
+              convo.next();
+              askApresMidi(response,convo);
+              convo.next();
               break;
           default:
               convo.say('Je suis désolé, je ne peux répondre à votre requête. Je vous propose d\'aller directement sur le CRM pour remplir vos timesheets'
                         +'\n'+ 'Voici le lien :'
                         +'\n'+ 'https://twelve.my.salesforce.com/home/home.jsp');
-              convo.next();
-              convo.stop();
         }
-        convo.next();
-        askApresMidi(response,convo);
-        convo.next();
       });
     }
     askApresMidi = function(response,convo){
