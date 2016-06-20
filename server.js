@@ -279,7 +279,9 @@ moment().format();
             "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
             }]
           }
+        convo.next();
         convo.say(attachment_timesheetajd);
+        convo.next();
         }
         else{
           askMatin(response,convo);
