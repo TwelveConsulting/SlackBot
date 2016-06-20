@@ -252,12 +252,14 @@ bodyParser = require('body-parser'),
       convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
       convo.next();
         if (response.text == 'oui') {
-          var attachment_timesheetajd = {
-            'text': `Je rentre ça dans le CRM.`,
-            "attachements": [{
-              "fallback": "Journée du 2O juin",
-              "color": "#64787e",
-              "title": "Journée du 20 juin",
+          var reply_with_attachments = {
+            'text': `Voici, ce que tu as fait hier.`,
+            "attachments": [ {
+              "fallback": "Journée du 19 juin",
+              "color": "#e8878e",
+
+              "title": "Journée du 19 juin",
+
               "fields": [
                 {  "title": "Matin",
                   "value": "Mission - BPI cadrage CRM",
@@ -266,10 +268,11 @@ bodyParser = require('body-parser'),
                 {  "title": "Après-Midi",
                   "value": "Développement Offre - Acculturation Digitale",
                   "short": "true"
-                }],
-                "footer": "Twelve consulting",
-                "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
-              }]
+                }
+              ],
+            "footer": "Twelve consulting",
+            "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
+            }]
           }
           convo.say(attachment_timesheetajd);
         }
