@@ -250,6 +250,7 @@ bodyParser = require('body-parser'),
       //convo.say(reply_with_attachments);
     
       convo.ask(reply_with_attachments + 'Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){});
+     } 
         /*var timesheet;
         if (response.text == 'oui') {
           var attachment_timesheetajd = {
@@ -381,6 +382,7 @@ bodyParser = require('body-parser'),
         convo.say('Ok je remplis vos timesheets d\'aujourd\'hui'+ attachment_timesheetajd);
         convo.next();    
       };*/
+
     bot.startConversation(message, askTimesheets);
   });
 
