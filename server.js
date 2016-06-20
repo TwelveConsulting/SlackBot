@@ -224,7 +224,10 @@ bodyParser = require('body-parser'),
 -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
   controller.hears(['timesheets'], 'direct_message', (bot, message) => {
-    var timesheet = { "am": "" };
+    var timesheet = { 
+      "am": "",
+      "pm": "" 
+    };
     askTimesheets = function(response, convo) {
       var reply_with_attachments = {
         'text': `Voici, ce que vous avez fait hier.`,
@@ -337,40 +340,53 @@ bodyParser = require('body-parser'),
       ]);
     }
     askApresMidi = function(response,convo){
-      convo.ask('Avez-vous travaillé sur l\'un de ces sujets cet après-midi? (Si oui répondre avec le numéro)' , function(response,convo){
-        switch(response.text){
-          case '1':
-              timesheet.pm = "Mission - BPI Cadrage CRM";
-              convo.next();
-              printTS(response,convo);
-              convo.next();
-              break;
-          case '2':
-              timesheet.pm = "Mission - IPSEN CI News";
-              convo.next();
-              printTS(response,convo);
-              convo.next();
-              break;
-          case '3':
-              timesheet.pm = "Developpement Offre - Acculturation Digitale";
-              convo.next();
-              printTS(response,convo);
-              convo.next();
-              break;
-          case '4':
-              timesheet.pm = "Mission - BPI Hub";
-              convo.next();
-              printTS(response,convo);
-              convo.next();
-              break;
-          default:
-              convo.say('Je suis désolé, je ne peux répondre à votre requête. Je vous propose d\'aller directement sur le CRM pour remplir vos timesheets'
-                        +'\n'+ 'Voici le lien :'
-                        +'\n'+ 'https://twelve.my.salesforce.com/home/home.jsp');
-              convo.next();
-              convo.stop();
+      convo.ask('Avez-vous travaillé sur l\'un de ces sujets ce matin? (Si oui répondre avec le numéro)' , [
+        {
+        pattern: '1',
+        callback: function(response,convo) {
+          timesheet.pm = "Mission - BPI Cadrage CRM";
+          convo.next();
+          printTS(response,convo);
+          convo.next();
+          }
+        },
+        {
+        pattern: '2',
+        callback: function(response,convo) {
+          timesheet.pm = "Mission - IPSEN CI News";
+          convo.next();
+          printTS(response,convo);
+          convo.next();
+          }
+        },
+        {
+        pattern: '3',
+        callback: function(response,convo) {
+          timesheet.pm = "Developpement Offre - Acculturation Digitale";
+          convo.next();
+          printTS(response,convo);
+          convo.next();
+          }
+        },
+        {
+        pattern: '4',
+        callback: function(response,convo) {
+          timesheet.pm = "Mission - BPI Hub";
+          convo.next();
+          printTS(response,convo);
+          convo.next();
+          }
+        },
+        {
+        default: true,
+        callback: function(response,convo) {
+          convo.say('Je suis désolé, je ne peux répondre à votre requête. Je vous propose d\'aller directement sur le CRM pour remplir vos timesheets'
+                    +'\n'+ 'Voici le lien :'
+                    +'\n'+ 'https://twelve.my.salesforce.com/home/home.jsp');
+          convo.next();
+          }
         }
-      });
+      ]);
     }
     printTS = function(response,convo){
       var attachment_timesheetajd = {
