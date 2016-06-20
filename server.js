@@ -226,6 +226,34 @@ bodyParser = require('body-parser'),
   controller.hears(['timesheets'], 'direct_message', (bot, message) => {
     askTimesheets = function(response, convo) {
       var reply_with_attachments = {
+        'text': `Ok, voila tes congés.`,
+        "attachments": [ {
+          "fallback": "Jours de congés restants",
+          "color": "#dd4124",
+
+          "title": "Congés",
+          "title_link": "https://twelve.my.salesforce.com/?ec=302&startURL=%2Fhome%2Fhome.jsp",
+
+          "text": "Voici votre solde de congés : 11",
+
+          "fields": [
+            {   "title": "CP N",
+              "value": "9",
+              "short":"true"
+            },
+            {   "title": "RTT",
+              "value": "1",
+              "short": "true"
+            },
+            {   "title": "RTT E",
+              "value": "1",
+              "short": "true"
+            }
+          ],
+        "footer": "Twelve consulting",
+        "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
+        }]
+      }/*var reply_with_attachments = {
         "attachements": [{
           "fallback": "Time Sheets",
           "color": "#e8878e",
@@ -244,7 +272,7 @@ bodyParser = require('body-parser'),
           "footer": "Twelve consulting",
           "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
         }]
-      };
+      };*/
       bot.say(message, reply_with_attachments);
     }
       /*convo.ask(reply_with_attachments + 'Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
