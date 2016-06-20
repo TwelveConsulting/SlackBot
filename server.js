@@ -283,43 +283,59 @@ bodyParser = require('body-parser'),
     }
     askMatin = function(response,convo){
       convo.say('Voici les 4 sujets sur lesquels vous avez travaillé récemment'
-                +'\n'+ "a - Mission - BPI Cadrage CRM"
-                +'\n'+ "b - Mission - IPSEN CI News"
-                +'\n'+ "c - Developpement Offre - Acculturation Digitale"
-                +'\n'+ "d - Mission - BPI Hub")
+                +'\n'+ "1 - Mission - BPI Cadrage CRM"
+                +'\n'+ "2 - Mission - IPSEN CI News"
+                +'\n'+ "3 - Developpement Offre - Acculturation Digitale"
+                +'\n'+ "4 - Mission - BPI Hub")
       convo.next();
-      convo.ask('Avez-vous travaillé sur l\'un de ces sujets ce matin? (Si oui répondre avec le numéro)' , function(response,convo){
-        switch(response.text){
-          case 'a':
-              timesheet.am = "Mission - BPI Cadrage CRM";
-              convo.next();
-              askApresMidi(response,convo);
-              convo.next();
-              break;
-          case 'b':
-              timesheet.am = "Mission - IPSEN CI News";
-              convo.next();
-              askApresMidi(response,convo);
-              convo.next();
-              break;
-          case 'c':
-              timesheet.am = "Developpement Offre - Acculturation Digitale";
-              convo.next();
-              askApresMidi(response,convo);
-              convo.next();
-              break;
-          case 'd':
-              timesheet.am = "Mission - BPI Hub";
-              convo.next();
-              askApresMidi(response,convo);
-              convo.next();
-              break;
-          default:
-              convo.say('Je suis désolé, je ne peux répondre à votre requête. Je vous propose d\'aller directement sur le CRM pour remplir vos timesheets'
-                        +'\n'+ 'Voici le lien :'
-                        +'\n'+ 'https://twelve.my.salesforce.com/home/home.jsp');
+      convo.ask('Avez-vous travaillé sur l\'un de ces sujets ce matin? (Si oui répondre avec le numéro)' , [
+        {
+        pattern: '1',
+        callback: function(response,convo) {
+          timesheet.am = "Mission - BPI Cadrage CRM";
+          convo.next();
+          askApresMidi(response,convo);
+          convo.next();
+          }
+        },
+        {
+        pattern: '2',
+        callback: function(response,convo) {
+          timesheet.am = "Mission - IPSEN CI News";
+          convo.next();
+          askApresMidi(response,convo);
+          convo.next();
+          }
+        },
+        {
+        pattern: '3',
+        callback: function(response,convo) {
+          timesheet.am = "Developpement Offre - Acculturation Digitale";
+          convo.next();
+          askApresMidi(response,convo);
+          convo.next();
+          }
+        },
+        {
+        pattern: '4',
+        callback: function(response,convo) {
+          timesheet.am = "Mission - BPI Hub";
+          convo.next();
+          askApresMidi(response,convo);
+          convo.next();
+          }
+        },
+        {
+        default: true,
+        callback: function(response,convo) {
+          convo.say('Je suis désolé, je ne peux répondre à votre requête. Je vous propose d\'aller directement sur le CRM pour remplir vos timesheets'
+                    +'\n'+ 'Voici le lien :'
+                    +'\n'+ 'https://twelve.my.salesforce.com/home/home.jsp');
+          convo.next();
+          convo.stop();
+          }
         }
-      });
+      ]);
     }
     askApresMidi = function(response,convo){
       convo.ask('Avez-vous travaillé sur l\'un de ces sujets cet après-midi? (Si oui répondre avec le numéro)' , function(response,convo){
