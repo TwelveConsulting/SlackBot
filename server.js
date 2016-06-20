@@ -401,7 +401,7 @@ bodyParser = require('body-parser'),
                "short": "true"
             },
             {  "title": "Après-Midi",
-               "value": timesheet.Pm,
+               "value": timesheet.pm,
                "short": "true"
             }
           ],
