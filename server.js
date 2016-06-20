@@ -252,7 +252,7 @@ bodyParser = require('body-parser'),
       convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
       convo.next();
         if (response.text == 'oui') {
-          var reply_with_attachments = {
+          var attachment_timesheetajd = {
             'text': `Voici, ce que tu as fait hier.`,
             "attachments": [ {
               "fallback": "Journée du 19 juin",
