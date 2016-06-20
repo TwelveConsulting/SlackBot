@@ -227,7 +227,7 @@ bodyParser = require('body-parser'),
     var timesheet;
     askTimesheets = function(response, convo) {
       var reply_with_attachments = {
-        'text': `Voici, ce que tu as fait hier.`,
+        'text': `Voici, ce que vous avez fait hier.`,
         "attachments": [ {
           "fallback": "Journée du 19 juin",
           "color": "#e8878e",
@@ -283,23 +283,23 @@ bodyParser = require('body-parser'),
     }
     askMatin = function(response,convo){
       convo.say('Voici les 4 sujets sur lesquels vous avez travaillé récemment'
-                +'\n'+ "1 - Mission - BPI Cadrage CRM"
-                +'\n'+ "2 - Mission - IPSEN CI News"
-                +'\n'+ "3 - Developpement Offre - Acculturation Digitale"
-                +'\n'+ "4 - Mission - BPI Hub")
+                +'\n'+ "a - Mission - BPI Cadrage CRM"
+                +'\n'+ "b - Mission - IPSEN CI News"
+                +'\n'+ "c - Developpement Offre - Acculturation Digitale"
+                +'\n'+ "d - Mission - BPI Hub")
       convo.next();
       convo.ask('Avez-vous travaillé sur l\'un de ces sujets ce matin? (Si oui répondre avec le numéro)' , function(response,convo){
         switch(response.text){
-          case '1':
+          case 'a':
               timesheet.am = "Mission - BPI Cadrage CRM";
               break;
-          case '2':
+          case 'b':
               timesheet.am = "Mission - IPSEN CI News";
               break;
-          case '3':
+          case 'c':
               timesheet.am = "Developpement Offre - Acculturation Digitale";
               break;
-          case '4':
+          case 'd':
               timesheet.am = "Mission - BPI Hub";
               break;
           default:
