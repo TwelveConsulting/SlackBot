@@ -2,6 +2,7 @@ var express = require('express'),
 bodyParser = require('body-parser'),
     //auth = require('./modules/auth'),
     conges = require('./modules/conges'),
+
     app = express();
 
     const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
@@ -27,10 +28,8 @@ bodyParser = require('body-parser'),
       }
     });
 
-    controller.hears(['hello'], 'direct_message,direct_mention,mention', (bot,message) => {
-      bot.reply(message, {
-        text: `Salut`
-      })
+    controller.hears(['hello','salut','bonjour'], 'direct_message,direct_mention,mention', (bot,message) => {
+      hello.execute;
     });
 
 
