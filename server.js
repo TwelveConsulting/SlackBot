@@ -100,7 +100,7 @@ bodyParser = require('body-parser'),
             }
           ],
         "footer": "Twelve consulting",
-        "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
+        "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
         }]
       }
 
@@ -199,7 +199,7 @@ bodyParser = require('body-parser'),
                 }
               ],
               "footer": "Twelve consulting",
-              "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
+              "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
             }]
          };
         convo.say(reply_with_attachments);
@@ -226,53 +226,27 @@ bodyParser = require('body-parser'),
   controller.hears(['timesheets'], 'direct_message', (bot, message) => {
     askTimesheets = function(response, convo) {
       var reply_with_attachments = {
-        'text': `Ok, voila tes congés.`,
+        'text': `Voici, ce que tu as fait hier.`,
         "attachments": [ {
-          "fallback": "Jours de congés restants",
-          "color": "#dd4124",
+          "fallback": "Journée du 20 juin",
+          "color": "#e8878e",
 
-          "title": "Congés",
-          "title_link": "https://twelve.my.salesforce.com/?ec=302&startURL=%2Fhome%2Fhome.jsp",
-
-          "text": "Voici votre solde de congés : 11",
+          "title": "Journée du 20 juin",
 
           "fields": [
-            {   "title": "CP N",
-              "value": "9",
-              "short":"true"
+            {  "title": "Matin",
+               "value": "Mission - BPI cadrage CRM",
+               "short": "true"
             },
-            {   "title": "RTT",
-              "value": "1",
-              "short": "true"
-            },
-            {   "title": "RTT E",
-              "value": "1",
-              "short": "true"
+            {  "title": "Après-Midi",
+               "value": "Développement Offre - Acculturation Digitale",
+               "short": "true"
             }
           ],
         "footer": "Twelve consulting",
-        "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
+        "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
         }]
-      }/*var reply_with_attachments = {
-        "attachements": [{
-          "fallback": "Time Sheets",
-          "color": "#e8878e",
-          "title": 'Time Sheets du 16 juin',
-          "fields": [
-            { "title": "Matin",
-              "value": "Mission - BPI cadrage CRM",
-              "short": "true"
-            },
-            { "title": "Après-Midi",
-              "value": "Développement Offre - Acculturation Digitale",
-              "short": "true"
-            }
-          ]
-          ,
-          "footer": "Twelve consulting",
-          "footer_icon": "https://pbs.twimg.com/profile_images/603464163701166080/SItfdpqV.jpg",
-        }]
-      };*/
+      }
       convo.say(reply_with_attachments);
     }
       /*convo.ask(reply_with_attachments + 'Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
