@@ -2,7 +2,7 @@ var express = require('express'),
 bodyParser = require('body-parser'),
     //auth = require('./modules/auth'),
     conges = require('./modules/conges'),
-
+    hello = require('./modules/hello')
     app = express();
 
     const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
