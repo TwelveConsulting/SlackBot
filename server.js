@@ -332,7 +332,6 @@ bodyParser = require('body-parser'),
                     +'\n'+ 'Voici le lien :'
                     +'\n'+ 'https://twelve.my.salesforce.com/home/home.jsp');
           convo.next();
-          convo.stop();
           }
         }
       ]);
