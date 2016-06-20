@@ -442,7 +442,7 @@ moment().format();
     var now = new Date();
     var res = { "date": now};
     bot.say(message,res.date);
-  })*/
+  })//*/
 
 
 
