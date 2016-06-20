@@ -261,7 +261,7 @@ moment().format();
             'text': `D\'accord. Je rentre ca dans le CRM.`,
             "attachments": [ {
               "fallback": "Journée du 20 juin",
-              "color": "#64787e",
+              "color": "#88221e",
 
               "title": "Journée du 20 juin",
 
@@ -396,7 +396,7 @@ moment().format();
         'text': `D\'accord. Je rentre ca dans le CRM.`,
         "attachments": [ {
           "fallback": "Journée du 20 juin",
-          "color": "#64787e",
+          "color": "#88221e",
           "title": "Journée du 20 juin",
           "fields": [
             {  "title": "Matin",
