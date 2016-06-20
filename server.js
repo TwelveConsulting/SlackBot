@@ -224,6 +224,7 @@ bodyParser = require('body-parser'),
 -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
   controller.hears(['timesheets'], 'direct_message', (bot, message) => {
+    var timesheet;
     askTimesheets = function(response, convo) {
       var reply_with_attachments = {
         'text': `Voici, ce que tu as fait hier.`,
@@ -250,7 +251,6 @@ bodyParser = require('body-parser'),
       convo.say(reply_with_attachments);
       convo.next();
       convo.ask('Remplissons vos timesheets : Avez-vous fait la même chose qu\'hier ? oui/non' , function(response, convo){
-      convo.next();
         if (response.text == 'oui') {
           var attachment_timesheetajd = {
             'text': `D\'accord. Je rentre ca dans le CRM.`,
@@ -274,143 +274,116 @@ bodyParser = require('body-parser'),
             "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
             }]
           }
-          convo.say(attachment_timesheetajd);
+        convo.say(attachment_timesheetajd);
+        }
+        else{
+          askMatin(response,convo);
         }
       });
-     } 
-        /*var timesheet;
-        if (response.text == 'oui') {
-          var attachment_timesheetajd = {
-            "attachements": [{
-              "fallback": "Time Sheets",
-              "color": "#e8878e",
-              "title": 'Time Sheets du 17 juin',
-              "fields": [
-                { "title": "Matin",
-                  "value": "Mission - BPI cadrage CRM",
-                  "short": "true"
-                },
-                { "title": "Après-Midi",
-                  "value": "Développement Offre - Acculturation Digitale",
-                  "short": "true"
-                }
-              ]
-            }]
-          }
-          convo.say('Ok je remplis vos timesheets d\'aujourd\'hui'+ attachment_timesheetajd);
-          convo.next();
+    }
+    askMatin = function(response,convo){
+      convo.say('Voici les 4 sujets sur lesquels vous avez travaillé récemment'
+                +'\n'+ "1 - Mission - BPI Cadrage CRM"
+                +'\n'+ "2 - Mission - IPSEN CI News"
+                +'\n'+ "3 - Developpement Offre - Acculturation Digitale"
+                +'\n'+ "4 - Mission - BPI Hub")
+      convo.next();
+      convo.ask('Avez-vous travaillé sur l\'un de ces sujets ce matin? (Si oui répondre avec le numéro)' , function(response,convo){
+        switch(response.text){
+          case '1':
+              timesheet.am = "Mission - BPI Cadrage CRM";
+              convo.next();
+              askApresMidi(response,convo);
+              convo.next();
+              break;
+          case '2':
+              timesheet.am = "Mission - IPSEN CI News";
+              convo.next();
+              askApresMidi(response,convo);
+              convo.next();
+              break;
+          case '3':
+              timesheet.am = "Developpement Offre - Acculturation Digitale";
+              convo.next();
+              askApresMidi(response,convo);
+              convo.next();
+              break;
+          case '4':
+              timesheet.am = "Mission - BPI Hub";
+              convo.next();
+              askApresMidi(response,convo);
+              convo.next();
+              break;
+          default:
+              convo.say('Je suis désolé, je ne peux répondre à votre requête. Je vous propose d\'aller directement sur le CRM pour remplir vos timesheets'
+                        +'\n'+ 'Voici le lien :'
+                        +'\n'+ 'https://twelve.my.salesforce.com/home/home.jsp');
+              convo.next();
+              convo.stop();
         }
-        else {
-          convo.ask('D\'accord, qu\'avez vous fait ce matin ? (Répondez par 1, 2, 3 ... en fonction)'
-            +'\n'+'1 - Mission'
-            +'\n'+'2 - Développement Commercial'
-            /*+'\n'+'3 - Développement Partenariat'
-            +'\n'+'4 - Développement Offre'
-            +'\n'+'5 - Administratif'
-            +'\n'+'6 - Absence',*/
-           /* [{
-              pattern: '1',
-              callback: function(response,convo) {
-              convo.ask('D\'accord, sur laquelle ?'
-                +'\n'+'1 - Mission - BPI Cadrage CRM'
-                +'\n'+'2 - Mission - IPSEN CI News');
-              switch(response.text) {
-                case '1':
-                  timesheet.matin = "Mission - BPI Cadrage CRM"
-                  break;
-                default:
-                  timesheet.matin = "Mission - IPSEN CI News"
-              };
+      });
+    }
+    askApresMidi = function(response,convo){
+      convo.ask('Avez-vous travaillé sur l\'un de ces sujets cet après-midi? (Si oui répondre avec le numéro)' , function(response,convo){
+        switch(response.text){
+          case '1':
+              timesheet.pm = "Mission - BPI Cadrage CRM";
               convo.next();
-              }
-            },
-            {
-              pattern: '2',
-              callback: function(response,convo) {
-              convo.ask('D\'accord, sur laquelle ?'
-                +'\n'+'1 - Développement Commercial - DEVIALET'
-                +'\n'+'2 - Développement Commercial - ABENEX'
-                +'\n'+'2 - Développement Commercial - KLEPIERRE');
-              switch(response.text) {
-                case '1':
-                  timesheet.matin = "Développement Commercial - DEVIALET"
-                  break;
-                case '2':
-                  timesheet.matin = "Développement Commercial - ABENEX"
-                  break;
-                default:
-                  timesheet.matin = "Développement Commercial - KLEPIERRE"
-              };
+              printTS(response,convo);
               convo.next();
-              }
-            }]);
-            convo.ask('D\'accord, qu\'avez vous fait cet après-midi ? (Répondez par 1, 2, 3 ... en fonction)'
-            +'\n'+'1 - Mission'
-            +'\n'+'2 - Développement Commercial'
-            /*+'\n'+'3 - Développement Partenariat'
-            +'\n'+'4 - Développement Offre'
-            +'\n'+'5 - Administratif'
-            +'\n'+'6 - Absence',*/
-           /* [{
-              pattern: '1',
-              callback: function(response,convo) {
-              convo.ask('D\'accord, sur laquelle ?'
-                +'\n'+'1 - Mission - BPI Cadrage CRM'
-                +'\n'+'2 - Mission - IPSEN CI News');
-              switch(response.text) {
-                case '1':
-                  timesheet.apresmidi = "Mission - BPI Cadrage CRM"
-                  break;
-                default:
-                  timesheet.apresmidi = "Mission - IPSEN CI News"
-              };
+              break;
+          case '2':
+              timesheet.pm = "Mission - IPSEN CI News";
               convo.next();
-              }
-            },
-            {
-              pattern: '2',
-              callback: function(response,convo) {
-              convo.ask('D\'accord, sur laquelle ?'
-                +'\n'+'1 - Développement Commercial - DEVIALET'
-                +'\n'+'2 - Développement Commercial - ABENEX'
-                +'\n'+'2 - Développement Commercial - KLEPIERRE');
-              switch(response.text) {
-                case '1':
-                  timesheet.apresmidi = "Développement Commercial - DEVIALET"
-                  break;
-                case '2':
-                  timesheet.apresmidi = "Développement Commercial - ABENEX"
-                  break;
-                default:
-                  timesheet.apresmidi = "Développement Commercial - KLEPIERRE"
-              };
+              printTS(response,convo);
               convo.next();
-              }
-            }]
-          );
+              break;
+          case '3':
+              timesheet.pm = "Developpement Offre - Acculturation Digitale";
+              convo.next();
+              printTS(response,convo);
+              convo.next();
+              break;
+          case '4':
+              timesheet.pm = "Mission - BPI Hub";
+              convo.next();
+              printTS(response,convo);
+              convo.next();
+              break;
+          default:
+              convo.say('Je suis désolé, je ne peux répondre à votre requête. Je vous propose d\'aller directement sur le CRM pour remplir vos timesheets'
+                        +'\n'+ 'Voici le lien :'
+                        +'\n'+ 'https://twelve.my.salesforce.com/home/home.jsp');
+              convo.next();
+              convo.stop();
         }
-        var attachment_timesheetajd = {
-          "attachements": [{
-            "fallback": "Time Sheets",
-            "color": "#e8878e",
-            "title": 'Time Sheets du 16 juin',
-            "fields": [
-              { "title": "Matin",
-                "value": timesheet.matin,
-                "short": "true"
-              },
-              { "title": "Après-Midi",
-                "value": timesheet.apresmidi,
-                "short": "true"
-              }
-            ]
-          }]
-        };
-        convo.say('Ok je remplis vos timesheets d\'aujourd\'hui'+ attachment_timesheetajd);
-        convo.next();    
-      };*/
-
-    bot.startConversation(message, askTimesheets);
+      });
+    }
+    printTS = function(response,convo){
+      var attachment_timesheetajd = {
+        'text': `D\'accord. Je rentre ca dans le CRM.`,
+        "attachments": [ {
+          "fallback": "Journée du 20 juin",
+          "color": "#64787e",
+          "title": "Journée du 20 juin",
+          "fields": [
+            {  "title": "Matin",
+               "value": timesheet.am,
+               "short": "true"
+            },
+            {  "title": "Après-Midi",
+               "value": timesheet.Pm,
+               "short": "true"
+            }
+          ],
+          "footer": "Twelve consulting",
+          "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
+        }]
+      }
+        convo.say(attachment_timesheetajd);
+        convo.next();
+    }
+   bot.startConversation(message, askTimesheets);
   });
 
 
