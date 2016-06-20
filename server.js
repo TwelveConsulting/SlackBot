@@ -253,7 +253,7 @@ bodyParser = require('body-parser'),
       convo.next();
         if (response.text == 'oui') {
           var attachment_timesheetajd = {
-            'text': `D\'je rentre ca dans le CRM.`,
+            'text': `D\'accord. Je rentre ca dans le CRM.`,
             "attachments": [ {
               "fallback": "Journée du 20 juin",
               "color": "#64787e",
