@@ -345,7 +345,7 @@ moment().format();
       ]);
     }
     askApresMidi = function(response,convo){
-      convo.ask('Avez-vous travaillé sur l\'un de ces sujets ce matin? (Si oui répondre avec le numéro)' , [
+      convo.ask('Avez-vous travaillé sur l\'un de ces sujets cet après-midi? (Si oui répondre avec le numéro)' , [
         {
         pattern: '1',
         callback: function(response,convo) {
