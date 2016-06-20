@@ -292,27 +292,15 @@ bodyParser = require('body-parser'),
         switch(response.text){
           case '1':
               timesheet.am = "Mission - BPI Cadrage CRM";
-              convo.next();
-              askApresMidi(response,convo);
-              convo.next();
               break;
           case '2':
               timesheet.am = "Mission - IPSEN CI News";
-              convo.next();
-              askApresMidi(response,convo);
-              convo.next();
               break;
           case '3':
               timesheet.am = "Developpement Offre - Acculturation Digitale";
-              convo.next();
-              askApresMidi(response,convo);
-              convo.next();
               break;
           case '4':
               timesheet.am = "Mission - BPI Hub";
-              convo.next();
-              askApresMidi(response,convo);
-              convo.next();
               break;
           default:
               convo.say('Je suis désolé, je ne peux répondre à votre requête. Je vous propose d\'aller directement sur le CRM pour remplir vos timesheets'
@@ -321,6 +309,9 @@ bodyParser = require('body-parser'),
               convo.next();
               convo.stop();
         }
+        convo.next();
+        askApresMidi(response,convo);
+        convo.next();
       });
     }
     askApresMidi = function(response,convo){
