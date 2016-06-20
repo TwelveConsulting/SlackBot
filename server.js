@@ -289,7 +289,8 @@ bodyParser = require('body-parser'),
                 +'\n'+ "1 - Mission - BPI Cadrage CRM"
                 +'\n'+ "2 - Mission - IPSEN CI News"
                 +'\n'+ "3 - Developpement Offre - Acculturation Digitale"
-                +'\n'+ "4 - Mission - BPI Hub")
+                +'\n'+ "4 - Mission - BPI Hub"
+                +'\n'+ "Autre")
       convo.next();
       convo.ask('Avez-vous travaillé sur l\'un de ces sujets ce matin? (Si oui répondre avec le numéro)' , [
         {
