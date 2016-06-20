@@ -9,9 +9,11 @@
   "author": "Christophe Coenraets <ccoenraets@gmail.com> (http://coenraets.org/)",
   "license": "ISC",
   "dependencies": {
+    "@pableke/date-format": "^1.0.0",
     "body-parser": "^1.14.2",
     "botkit": "^0.1.1",
     "express": "^4.13.3",
+    "moment": "^2.13.0",
     "nforce": "^1.3.3"
   }
 }
