@@ -438,11 +438,11 @@ moment().format();
 -------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------*/
 
-  /*controller.hears(['date'], 'direct_message', (bot, message) => {
-    var now = new Date();
-    var res = { "date": now};
+  controller.hears(['date'], 'direct_message', (bot, message) => {
+    var now = moment();
+    var res = { "date": now.get('date')};
     bot.say(message,res.date);
-  })*/
+  })
 
 
 
