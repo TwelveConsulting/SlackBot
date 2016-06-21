@@ -437,8 +437,23 @@ bot.startRTM(err => {
 -------------------------------------------------------------------------------------------------------------*/
 
   controller.hears(['jour'], 'direct_message', (bot, message) => {
-    var now = moment().format('LLLL');
-    bot.reply(message,now);
+    askJour = function(response, convo){
+      var dateMois = /[0-9]?[0-9]) (janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre)?/;
+      var jourSeul = /dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi/;
+      convo.ask('Donne moi une date ?');
+      convo.next();
+      var tabDate = dateMois.exec(response.text);
+      var tabJour = jourSeul.exec(response.text);
+      /*if (tabD.length()=2) {
+        var m = moment()
+
+      }*/
+      var m=moment().year('2016').month(tabDate[1]).date(tabDate[0]);
+      convo.say(m);
+      convo.next;
+    }
+    
+    bot.startConversation(message, askJour);
   })
 
 
