@@ -449,8 +449,8 @@ bot.startRTM(err => {
           var m = moment()
 
         }*/
-        var m=moment().year('2016').month(tabDate[1]).date(tabDate[0]);
-        convo.say(tabDate[1]);
+        var m=moment().year('2016').month(tabDate[2]).date(tabDate[1]);
+        convo.say(m);
         convo.next();
       });
       
