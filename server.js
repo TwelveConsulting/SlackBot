@@ -450,7 +450,7 @@ bot.startRTM(err => {
 
         }*/
         var m=moment().year('2016').month(tabDate[2]).date(tabDate[1]);
-        convo.say(m);
+        convo.say(m.format('LLLL'));
         convo.next();
       });
       
