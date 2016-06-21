@@ -438,7 +438,7 @@ bot.startRTM(err => {
 
   controller.hears(['jour'], 'direct_message', (bot, message) => {
     askJour = function(response, convo){
-      var dateMois = /[0-9]?[0-9]) (janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre)?/;
+      var dateMois = /([0-9]?[0-9]) (janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre)?/;
       var jourSeul = /dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi/;
       convo.ask('Donne moi une date ?');
       convo.next();
