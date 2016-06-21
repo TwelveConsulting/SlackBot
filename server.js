@@ -445,7 +445,7 @@ bot.startRTM(err => {
         var res = response.text;
         var tabDate = dateMois.exec(res);
         var tabJour = jourSeul.exec(res);
-        if (tabD.length()=2) {
+        if (tabD.length()==2) {
           var m=moment().month(tabDate[2]).date(tabDate[1]);
           convo.say(m.format('LLLL'));
           convo.next();
