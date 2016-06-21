@@ -442,8 +442,9 @@ bot.startRTM(err => {
       var jourSeul = /dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi/;
       convo.ask('Donne moi une date ?', function(response, convo) {
         convo.next();
-        var tabDate = dateMois.exec(response.text);
-        var tabJour = jourSeul.exec(response.text);
+        var res = response.text;
+        var tabDate = dateMois.exec(res);
+        var tabJour = jourSeul.exec(res);
         /*if (tabD.length()=2) {
           var m = moment()
 
