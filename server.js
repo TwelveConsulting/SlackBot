@@ -5,7 +5,7 @@ bodyParser = require('body-parser'),
     //hello = require('./modules/hello')
     app = express();
 var moment = require('moment');
-moment().format();
+moment.locale('fr');
 
     const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 
@@ -439,9 +439,8 @@ moment().format();
 -------------------------------------------------------------------------------------------------------------*/
 
   controller.hears(['date'], 'direct_message', (bot, message) => {
-    var now = moment();
-    var res = { "date": now.get('date')};
-    bot.say(message,res.date);
+    var now = moment().format('LLLL');
+    bot.say(message,now);
   })
 
 
