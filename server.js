@@ -438,7 +438,7 @@ bot.startRTM(err => {
 
   controller.hears(['jour'], 'direct_message', (bot, message) => {
     var now = moment().format('LLLL');
-    bot.say(message,now);
+    bot.reply(message,now);
   })
 
 
