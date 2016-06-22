@@ -445,23 +445,23 @@ bot.startRTM(err => {
         var res = response.text;
         var tabDate = dateMois.exec(res);
         var tabJour = jourSeul.exec(res);
-        if (tabDate.length()==2) {
+        if (!(typeof tabDate === 'string' || tabDate instanceof String)) {
+          var m=moment().date(tabDate);
+          convo.say(m.format('LLLL'));
+          convo.next();
           var m=moment().month(tabDate[2]).date(tabDate[1]);
           convo.say(m.format('LLLL'));
           convo.next();
-
         }
         else {
-          var m=moment().date(tabDate[1]);
+          var m=moment().month(tabDate[2]).date(tabDate[1]);
           convo.say(m.format('LLLL'));
           convo.next();
         }
-      });
-      
+      });   
     }
-    
     bot.startConversation(message, askJour);
-  })
+  });
 
 
 
