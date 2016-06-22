@@ -443,15 +443,15 @@ bot.startRTM(err => {
       convo.ask('Donne moi une date ?', function(response, convo) {
         convo.next();
         var res = response.text;
-        var tabDate = dateMois.exec(res);
-        var tabJour = jourSeul.exec(res);
-        if (!(typeof tabDate === 'string' || tabDate instanceof String)) {
-          var m=moment().date(tabDate);
+        var tDate = dateMois.exec(res);
+        var tJour = jourSeul.exec(res);
+        if (!(typeof tDate === 'string' || tDate instanceof String)) {
+          var m=moment().date(tDate);
           convo.say(m.format('LLLL'));
           convo.next();
         }
         else {
-          var m=moment().month(tabDate[2]).date(tabDate[1]);
+          var m=moment().month(tDate[2]).date(tDate[1]);
           convo.say(m.format('LLLL'));
           convo.next();
         }
