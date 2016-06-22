@@ -449,9 +449,6 @@ bot.startRTM(err => {
           var m=moment().date(tabDate);
           convo.say(m.format('LLLL'));
           convo.next();
-          var m=moment().month(tabDate[2]).date(tabDate[1]);
-          convo.say(m.format('LLLL'));
-          convo.next();
         }
         else {
           var m=moment().month(tabDate[2]).date(tabDate[1]);
