@@ -480,7 +480,7 @@ bot.startRTM(err => {
               var dateVoulue = m.get('date');
               if (dateVoulue<jour) {
                 var m = m.add(7, 'days');
-              }*
+              }
               convo.say(m.format('LLLL'));
               convo.next();
             }
