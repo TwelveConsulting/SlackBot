@@ -446,7 +446,8 @@ bot.startRTM(err => {
         var res = response.text;
         var tJM = dateMois.exec(res);
         var OKtJM = tJM.value
-        var tJour = jourSeul.exec(res);
+        convo.say(tJM.value);
+       /* var tJour = jourSeul.exec(res);
         if (OKtJM) {
           var m=moment().date(tDate);
           convo.say(m.format('LLLL'));
@@ -456,7 +457,7 @@ bot.startRTM(err => {
           var m=moment().month(tDate[2]).date(tDate[1]);
           convo.say(m.format('LLLL'));
           convo.next();
-        }
+        }*/
       });   
     }
     bot.startConversation(message, askJour);
