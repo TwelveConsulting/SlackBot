@@ -158,7 +158,7 @@ bot.startRTM(err => {
               if (moisVoulu<mois){
                 var m=m.add(1, 'year');
               }   
-              dateDebut = m;
+              dateDeb = m;
               dateFin =m;
             }
             else {  
@@ -171,7 +171,7 @@ bot.startRTM(err => {
                 else{
                   var m = moment().date(jourJ);
                 }
-                dateDebut = m;
+                dateDeb = m;
                 dateFin =m;
               }
               else {
@@ -206,14 +206,14 @@ bot.startRTM(err => {
                 if (dateVoulue<jour) {
                   var m = m.add(7, 'days');
                 }
-                dateDebut = m;
+                dateDeb = m;
                 dateFin =m;
                 }
                 else {
                   if (res = "demain"){
                     var m = moment();
                     m=m.add(1, 'day');
-                    dateDebut = m;
+                    dateDeb = m;
                     dateFin =m;
                   }
                 }
@@ -233,10 +233,10 @@ bot.startRTM(err => {
             var tHS = hSeule.exec(res);
             var tHM = hMin.exec(res);
             if (!(tHS === null)) {
-              dateDebut.hour(tHS[1]).minute(0);
+              dateDeb.hour(tHS[1]).minute(0);
             }
             else{
-              dateDebut.hour(tHM[1]).minute(tHM[3]);
+              dateDeb.hour(tHM[1]).minute(tHM[3]);
             }
             askHeureFin(response,convo);
             convo.next();
@@ -276,11 +276,11 @@ bot.startRTM(err => {
               "title": "Rendez-vous Salle Twelve",
               "fields": [
                 { "title": "Jour",
-                 "value": dateDebut.format('LL'),
+                 "value": dateDeb.format('LL'),
                  "short":"true"
                 },
                 { "title": "Début",
-                  "value": dateDebut.format('LT'),
+                  "value": dateDeb.format('LT'),
                   "short": "true"
                 },
                 { "title": "Fin",
@@ -292,7 +292,7 @@ bot.startRTM(err => {
                   "short": "true"
                 }
                 { "title": "Standard UTC Début",
-                  "value": dateDebut.format(),
+                  "value": dateDeb.format(),
                   "short": "true"
                 }
                 { "title": "Standard UTC Début",
