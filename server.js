@@ -476,12 +476,12 @@ bot.startRTM(err => {
           else {
             if (!(tJS === null)){
               var jour = moment().date();
-              var m = moment().weekday(tJS[1]);
-              /*var dateVoulue = m.get('date');
+              var m = moment().day(tJS[1]);
+              /var dateVoulue = m.get('date');
               if (dateVoulue<jour) {
                 var m = m.add(7, 'days');
-              }*/
-              convo.say(m/*.format('LLLL')*/);
+              }*
+              convo.say(m.format('LLLL'));
               convo.next();
             }
           }
