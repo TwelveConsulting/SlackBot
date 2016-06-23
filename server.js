@@ -290,11 +290,11 @@ bot.startRTM(err => {
                 { "title": "Organisateur",
                   "value": value.nom,
                   "short": "true"
-                }
+                },
                 { "title": "Standard UTC Début",
                   "value": dateDeb.format(),
                   "short": "true"
-                }
+                },
                 { "title": "Standard UTC Début",
                   "value": dateFin.format(),
                   "short": "true"
