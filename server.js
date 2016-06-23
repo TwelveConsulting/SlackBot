@@ -169,12 +169,14 @@ bot.startRTM(err => {
                 var jourJ = tDS[1];
                 if (jourJ < ajd) {
                   var m = moment().add(1, 'M').date(jourJ);
+                  var m2 = moment().add(1, 'M').date(jourJ);
                 }
                 else{
                   var m = moment().date(jourJ);
+                  var m2 = moment().date(jourJ);
                 }
                 dateDeb = m;
-                dateFin =m;
+                dateFin =m2;
               }
               else {
                 if (!(tJS === null)){
@@ -204,19 +206,23 @@ bot.startRTM(err => {
                      n=0;
                 }
                 var m = moment().day(n);
+                var m2 = moment().day(n);
                 var dateVoulue = m.get('date');
                 if (dateVoulue<jour) {
                   var m = m.add(7, 'days');
+                  var m2 = m2.add(7, 'days');
                 }
                 dateDeb = m;
-                dateFin =m;
+                dateFin =m2;
                 }
                 else {
                   if (res = "demain"){
                     var m = moment();
+                    var m2 = moment();
                     m=m.add(1, 'day');
+                    m2=m2.add(1, 'day');
                     dateDeb = m;
-                    dateFin =m;
+                    dateFin =m2;
                   }
                 }
               }
