@@ -447,9 +447,18 @@ bot.startRTM(err => {
         var tDM = dateMois.exec(res);
         var tDS = dateSeule.exec(res);
         if ( !(tDM === null)){
-          var m=moment().month(tDM[2]).date(tDM[1]);
-          convo.say(m.format('LLLL'));
-          convo.next();
+          var now = moment();
+          var mois = moment.month(); //mois actuel
+          if (tDM[2]<mois){
+            var m=moment().add(1, 'y').month(tDM[2]).date(tDM[1]);
+            convo.say(m.format('LLLL'));
+            convo.next();
+          }
+          else{
+            var m=moment().month(tDM[2]).date(tDM[1]);
+            convo.say(m.format('LLLL'));
+            convo.next();
+          } 
         }
         else {
           if (!( tDS === null)){
