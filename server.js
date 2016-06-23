@@ -478,8 +478,6 @@ bot.startRTM(err => {
               var jour = moment().date();
               var n;
               var jourJ=tJS[1];
-              convo.say(typeof(jourJ));
-              convo.next();
               switch (tJS[1]){
                 case 'lundi':
                   n=1;
@@ -509,6 +507,14 @@ bot.startRTM(err => {
               }
               convo.say(m.format('LLLL'));
               convo.next();
+            }
+            else {
+              if (res = "demain"){
+                var m = moment();
+                m=m.add(1, 'day');
+                convo.say(m.format('LLLL'));
+                convo.next();
+              }
             }
           }
         }
