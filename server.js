@@ -250,10 +250,10 @@ bot.startRTM(err => {
             var tHS = hSeule.exec(res);
             var tHM = hMin.exec(res);
             if (!(tHS === null)) {
-              dateFin.hour(tHS[1]);
+              dateFin.hour(tHS[1]).minute(0);
             }
             else{
-              dateFin.hour(tHM[1]).tHM[3];
+              dateFin.hour(tHM[1]).minute(tHM[3]);
             }
             askNom(response,convo);
             convo.next();
