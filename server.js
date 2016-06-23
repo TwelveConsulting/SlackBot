@@ -154,12 +154,14 @@ bot.startRTM(err => {
             if ( !(tDM === null)){
               var mois = moment().get('M'); //mois actuel
               var m=moment().month(tDM[2]).date(tDM[1]);
+              var m2=moment().month(tDM[2]).date(tDM[1]);
               var moisVoulu = m.get('M');
               if (moisVoulu<mois){
                 var m=m.add(1, 'year');
+                var m2=m2.add(1, 'year');
               }   
               dateDeb = m;
-              dateFin =m;
+              dateFin = m2;
             }
             else {  
               if (!( tDS === null)){
@@ -233,10 +235,10 @@ bot.startRTM(err => {
             var tHS = hSeule.exec(res);
             var tHM = hMin.exec(res);
             if (!(tHS === null)) {
-              dateDeb.hour(tHS[1]).minute(0).seconds(0);
+              dateDeb.hour(tHM[1]).minute(tHM[3]).seconds(0);
             }
             else{
-              dateDeb.hour(tHM[1]).minute(tHM[3]).seconds(0);
+              dateDeb.hour(tHS[1]).minute(0).seconds(0);
             }
             askHeureFin(response,convo);
             convo.next();
