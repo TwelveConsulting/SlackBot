@@ -6,6 +6,7 @@ var express = require('express'),
     app = express();
 var moment = require('moment');
 moment.locale('fr')
+moment().zone(2);
 
 const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 
