@@ -232,7 +232,9 @@ bot.startRTM(err => {
             var res = response.text;
             var tHS = hSeule.exec(res);
             var tHM = hMin.exec(res);
-            convo.say(tHS[1]);
+            convo.say(tHM[1]);
+            convo.next();
+            convo.say(tHM[3]);
             convo.next();
             /*if (!(tHS === null)) {
               dateDeb.hour(tHS[1]).minute(0);
