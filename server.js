@@ -476,11 +476,34 @@ bot.startRTM(err => {
           else {
             if (!(tJS === null)){
               var jour = moment().date();
-              var m = moment().day(1);
-              //var dateVoulue = m.get('date');
-              //if (dateVoulue<jour) {
-              //  var m = m.add(7, 'days');
-              //}
+              var n;
+              switch (tJS){
+                case "lundi":
+                  n=1;
+                  break;
+                case "mardi":
+                  n=2;
+                  break;
+                case "mercredi":
+                  n=3;
+                  break;
+                case "jeudi":
+                  n=4;
+                  break;
+                case "vendredi":
+                  n=5;
+                  break;
+                case "samedi":
+                  n=6;
+                  break;
+                default:
+                  n=0;
+              }
+              var m = moment().day(n);
+              var dateVoulue = m.get('date');
+              if (dateVoulue<jour) {
+                var m = m.add(7, 'days');
+              }
               convo.say(m.format('LLLL'));
               convo.next();
             }
