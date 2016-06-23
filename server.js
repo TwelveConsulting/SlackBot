@@ -472,6 +472,7 @@ bot.startRTM(err => {
               convo.say(m.format('LLLL'));
               convo.next();
             }
+          }
           else {
             if (!(tJS === null)){
               var jour = moment().date();
@@ -483,7 +484,6 @@ bot.startRTM(err => {
               convo.say(m.format('LLLL'));
               convo.next();
             }
-          }
           }
         }
        /* var tJour = jourSeul.exec(res);
