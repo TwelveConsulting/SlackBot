@@ -449,11 +449,8 @@ bot.startRTM(err => {
         if ( !(tDM === null)){
           var now = moment();
           var mois = moment().get('M'); //mois actuel
-          var test = typeof(mois);
-          convo.say(test);
-          convo.next();
          if (tDM[2]<mois){
-            var m=moment().add(1, 'y').month(tDM[2]).date(tDM[1]);
+            var m=moment().add(1, 'year').month(tDM[2]).date(tDM[1]);
             convo.say(m.format('LLLL'));
             convo.next();
           }
