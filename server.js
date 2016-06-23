@@ -477,7 +477,7 @@ bot.startRTM(err => {
             if (!(tJS === null)){
               var jour = moment().date();
               var m = moment().weekday(tJS[1]);
-              var dateVoulue = m.date();
+              var dateVoulue = m.get('date');
               if (dateVoulue<jour) {
                 var m = m.add(7, 'days');
               }
