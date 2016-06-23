@@ -445,7 +445,7 @@ bot.startRTM(err => {
         convo.next();
         var res = response.text;
         var tJM = dateMois.exec(res);
-        var test = typeof(tJM.1)
+        var test = typeof(tJM[1])
         convo.say(test);
        /* var tJour = jourSeul.exec(res);
         if (OKtJM) {
