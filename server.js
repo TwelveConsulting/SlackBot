@@ -456,7 +456,16 @@ bot.startRTM(err => {
             var now = moment();
             var ajd = moment().date();
             var jourJ = tDS[1];
-            convo.say(jourJ)
+            if (jourJ < ajd) {
+              var m = moment().add(1, 'M').date(jourJ)
+              convo.say(m.format('LLLL'));
+              convo.next();
+            }
+            else{
+              var m = moment().date(jourJ)
+              convo.say(m.format('LLLL'));
+              convo.next();
+            }
           }
         }
        /* var tJour = jourSeul.exec(res);
