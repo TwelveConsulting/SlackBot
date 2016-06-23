@@ -261,7 +261,7 @@ bot.startRTM(err => {
         }
         askNom = function(response, convo) {
           convo.ask('A quel nom dois-je mettre la réunion?', function(response, convo) {
-            value.nom = response.text;
+            value = {"nom": response.text};
             //convo.say('Ok.');
             printReunion(response,convo);
             convo.next();
