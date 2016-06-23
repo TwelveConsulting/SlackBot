@@ -446,7 +446,7 @@ bot.startRTM(err => {
         var res = response.text;
         var tDM = dateMois.exec(res);
         var tDS = dateSeule.exec(res);
-        if ( !(tDM === null){
+        if ( !(tDM === null)){
           var m=moment().month(tDM[2]).date(tDM[1]);
           convo.say(m.format('LLLL'));
           convo.next();
