@@ -251,11 +251,11 @@ bot.startRTM(err => {
             var res = response.text;
             var tHS = hSeule.exec(res);
             var tHM = hMin.exec(res);
-            if (!(tHS === null)) {
-              dateFin.hour(tHS[1]).minute(0).seconds(0);
+            if (!(tHM === null)) {
+              dateFin.hour(tHM[1]).minute(tHM[3]).seconds(0);
             }
             else{
-              dateFin.hour(tHM[1]).minute(tHM[3]).seconds(0);
+              dateFin.hour(tHS[1]).minute(0).seconds(0);
             }
             askNom(response,convo);
             convo.next();
