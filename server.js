@@ -478,7 +478,7 @@ bot.startRTM(err => {
               var jour = moment().date();
               var n;
               switch (tJS[1]){
-                case "lundi":
+                case 'lundi':
                   n=1;
                   break;
                 case "mardi":
