@@ -476,10 +476,8 @@ bot.startRTM(err => {
           else {
             if (!(tJS === null)){
               var jour = moment().date();
-              convo.say(typeof(tJS));
-              convo.next();
               var n;
-              switch (tJS){
+              switch (tJS[1]){
                 case "lundi":
                   n=1;
                   break;
