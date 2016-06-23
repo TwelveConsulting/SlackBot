@@ -232,18 +232,14 @@ bot.startRTM(err => {
             var res = response.text;
             var tHS = hSeule.exec(res);
             var tHM = hMin.exec(res);
-            convo.say(tHM[1]);
-            convo.next();
-            convo.say(tHM[3]);
-            convo.next();
-            /*if (!(tHS === null)) {
+            if (!(tHS === null)) {
               dateDeb.hour(tHS[1]).minute(0);
             }
             else{
               dateDeb.hour(tHM[1]).minute(tHM[3]);
             }
             askHeureFin(response,convo);
-            convo.next();*/
+            convo.next();
           })
         }
         askHeureFin = function(response, convo) {
