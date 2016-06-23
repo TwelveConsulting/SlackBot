@@ -128,6 +128,8 @@ bot.startRTM(err => {
 
     controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
         var value ;
+        var dateDeb;
+        var dateFin;
         askReserver = function(response1, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
             if (response.text == 'non') {
@@ -142,7 +144,81 @@ bot.startRTM(err => {
         }
         askDate = function(response, convo) {
           convo.ask('A quelle date?', function(response, convo) {
-            value = { 'date' : response.text };
+            var dateSeule = /([0-3]?[0-9])/; 
+            var dateMois = /([0-3]?[0-9]) (janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre)/;
+            var jourSeul = /(dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi)/;
+            var res = response.text;
+            var tJS = jourSeul.exec(res);
+            var tDM = dateMois.exec(res);
+            var tDS = dateSeule.exec(res);
+            if ( !(tDM === null)){
+              var mois = moment().get('M'); //mois actuel
+              var m=moment().month(tDM[2]).date(tDM[1]);
+              var moisVoulu = m.get('M');
+              if (moisVoulu<mois){
+                var m=m.add(1, 'year');
+              }   
+              dateDebut = m;
+              dateFin =m;
+            }
+            else {  
+              if (!( tDS === null)){
+                var ajd = moment().date();
+                var jourJ = tDS[1];
+                if (jourJ < ajd) {
+                  var m = moment().add(1, 'M').date(jourJ);
+                }
+                else{
+                  var m = moment().date(jourJ);
+                }
+                dateDebut = m;
+                dateFin =m;
+              }
+              else {
+                if (!(tJS === null)){
+                  var jour = moment().date();
+                  var n;
+                  var jourJ=tJS[1];
+                  switch (tJS[1]){
+                    case 'lundi':
+                       n=1;
+                      break;
+                    case "mardi":
+                      n=2;
+                      break;
+                    case "mercredi":
+                      n=3;
+                      break;
+                    case "jeudi":
+                      n=4;
+                      break;
+                    case "vendredi":                        
+                      n=5;
+                      break
+                    case "samedi":
+                      n=6;
+                      break;
+                    default:
+                     n=0;
+                }
+                var m = moment().day(n);
+                var dateVoulue = m.get('date');
+                if (dateVoulue<jour) {
+                  var m = m.add(7, 'days');
+                }
+                dateDebut = m;
+                dateFin =m;
+                }
+                else {
+                  if (res = "demain"){
+                    var m = moment();
+                    m=m.add(1, 'day');
+                    dateDebut = m;
+                    dateFin =m;
+                  }
+                }
+              }
+            }
             //convo.say('Ok. La reunion aura lieu le ' + value.date)
             askHeureDebut(response, convo);
             convo.next();
@@ -151,16 +227,34 @@ bot.startRTM(err => {
       
         askHeureDebut = function(response, convo) {
           convo.ask('Quelle heure de début?', function(response, convo) {
-            value.hDeb = response.text;
-            //convo.say('Ok.' + value.hDeb);
+            var hSeule = /([0-2]?[0-9])(?=(h|H)))/
+            var hMin = /([0-2]?[0-9])(?:(h|H|:))([0-6]?[0-9])/
+            var res = response.text;
+            var tHS = hSeule.exec(res);
+            var tHM = hMin.exec(res);
+            if (!(tHS === null)) {
+              dateDebut.hour(tHS[1]).minute(0);
+            }
+            else{
+              dateDebut.hour(tHM[1]).minute(tHM[3]);
+            }
             askHeureFin(response,convo);
             convo.next();
           });
         }
         askHeureFin = function(response, convo) {
           convo.ask('Quelle heure de fin?', function(response, convo) {
-            value.hFin = response.text;
-            //convo.say('Ok.');
+            var hSeule = /([0-2]?[0-9])(?=(h|H)))/
+            var hMin = /([0-2]?[0-9])(?:(h|H|:))([0-6]?[0-9])/
+            var res = response.text;
+            var tHS = hSeule.exec(res);
+            var tHM = hMin.exec(res);
+            if (!(tHS === null)) {
+              dateFin.hour(tHS[1]);
+            }
+            else{
+              dateFin.hour(tHM[1]).tHM[3];
+            }
             askNom(response,convo);
             convo.next();
           });
@@ -182,19 +276,27 @@ bot.startRTM(err => {
               "title": "Rendez-vous Salle Twelve",
               "fields": [
                 { "title": "Jour",
-                 "value": value.date,
+                 "value": dateDebut.format('LL'),
                  "short":"true"
                 },
                 { "title": "Début",
-                  "value": value.hDeb,
+                  "value": dateDebut.format('LT'),
                   "short": "true"
                 },
                 { "title": "Fin",
-                  "value": value.hFin,
+                  "value": dateFin.format('LT'),
                   "short": "true"
                 },
                 { "title": "Organisateur",
                   "value": value.nom,
+                  "short": "true"
+                }
+                { "title": "Standard UTC Début",
+                  "value": dateDebut.format(),
+                  "short": "true"
+                }
+                { "title": "Standard UTC Début",
+                  "value": dateFin.format(),
                   "short": "true"
                 }
               ],
