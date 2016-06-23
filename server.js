@@ -232,7 +232,9 @@ bot.startRTM(err => {
             var res = response.text;
             var tHS = hSeule.exec(res);
             var tHM = hMin.exec(res);
-            if (!(tHS === null)) {
+            convo.say(tHS[1]);
+            convo.next();
+            /*if (!(tHS === null)) {
               dateDeb.hour(tHS[1]).minute(0);
             }
             else{
@@ -240,7 +242,7 @@ bot.startRTM(err => {
             }
             askHeureFin(response,convo);
             convo.next();
-          });
+          });*/
         }
         askHeureFin = function(response, convo) {
           convo.ask('Quelle heure de fin?', function(response, convo) {
