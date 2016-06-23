@@ -481,22 +481,11 @@ bot.startRTM(err => {
               if (dateVoulue<jour) {
                 var m = m.add(7, 'days');
               }*/
-              convo.say(m.format('LLLL'));
+              convo.say(m/*.format('LLLL')*/);
               convo.next();
             }
           }
         }
-       /* var tJour = jourSeul.exec(res);
-        if (OKtJM) {
-          var m=moment().date(tDate);
-          convo.say(m.format('LLLL'));
-          convo.next();
-        }
-        else {
-          var m=moment().month(tDate[2]).date(tDate[1]);
-          convo.say(m.format('LLLL'));
-          convo.next();
-        }*/
       });   
     }
     bot.startConversation(message, askJour);
