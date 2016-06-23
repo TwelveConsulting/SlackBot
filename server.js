@@ -445,7 +445,7 @@ bot.startRTM(err => {
         convo.next();
         var res = response.text;
         var tJM = dateMois.exec(res);
-        if ( typeof(tJM[2] === null)){
+        if ( typeof(tJM === null)){
           convo.say('ca marche !');
         }
         else {
