@@ -449,7 +449,8 @@ bot.startRTM(err => {
         if ( !(tDM === null)){
           var now = moment();
           var mois = moment.month(); //mois actuel
-          if (tDM[2]<mois){
+          convo.say(mois);
+          /*if (tDM[2]<mois){
             var m=moment().add(1, 'y').month(tDM[2]).date(tDM[1]);
             convo.say(m.format('LLLL'));
             convo.next();
@@ -458,7 +459,7 @@ bot.startRTM(err => {
             var m=moment().month(tDM[2]).date(tDM[1]);
             convo.say(m.format('LLLL'));
             convo.next();
-          } 
+          } */
         }
         else {
           if (!( tDS === null)){
