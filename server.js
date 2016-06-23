@@ -240,6 +240,8 @@ bot.startRTM(err => {
             }
             askHeureFin(response,convo);
             convo.next();
+            convo.say(dateDeb.format('LLLL'));
+            convo.next();
           })
         }
         askHeureFin = function(response, convo) {
@@ -279,16 +281,16 @@ bot.startRTM(err => {
                  "value": dateDeb.format('LL'),
                  "short":"true"
                 },
+                { "title": "Organisateur",
+                  "value": value.nom,
+                  "short": "true"
+                },
                 { "title": "Début",
                   "value": dateDeb.format('LT'),
                   "short": "true"
                 },
                 { "title": "Fin",
                   "value": dateFin.format('LT'),
-                  "short": "true"
-                },
-                { "title": "Organisateur",
-                  "value": value.nom,
                   "short": "true"
                 },
                 { "title": "Standard UTC Début",
