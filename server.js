@@ -446,13 +446,13 @@ bot.startRTM(err => {
         var res = response.text;
         var tDM = dateMois.exec(res);
         var tDS = dateSeule.exec(res);
+        var tJS = jourSeul.exec(res);
         if ( !(tDM === null)){
-          var now = moment();
           var mois = moment().get('M'); //mois actuel
           var m=moment().month(tDM[2]).date(tDM[1]);
           var moisVoulu = m.get('M');
           if (moisVoulu<mois){
-            var m=m.add(1, 'year')
+            var m=m.add(1, 'year');
           }   
           convo.say(m.format('LLLL'));
           convo.next();
@@ -460,19 +460,30 @@ bot.startRTM(err => {
         }
         else {
           if (!( tDS === null)){
-            var now = moment();
             var ajd = moment().date();
             var jourJ = tDS[1];
             if (jourJ < ajd) {
-              var m = moment().add(1, 'M').date(jourJ)
+              var m = moment().add(1, 'M').date(jourJ);
               convo.say(m.format('LLLL'));
               convo.next();
             }
             else{
-              var m = moment().date(jourJ)
+              var m = moment().date(jourJ);
               convo.say(m.format('LLLL'));
               convo.next();
             }
+          else {
+            if (!(tJS === null)){
+              var jour = moment().date();
+              var m = moment().weekday(tJS[1]);
+              var dateVoulue = m.date();
+              if (dateVoulue<jour) {
+                var m = m.add(7, 'days');
+              }
+              convo.say(m.format('LLLL'));
+              convo.next();
+            }
+          }
           }
         }
        /* var tJour = jourSeul.exec(res);
