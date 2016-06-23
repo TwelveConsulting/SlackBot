@@ -227,7 +227,7 @@ bot.startRTM(err => {
       
         askHeureDebut = function(response, convo) {
           convo.ask('Quelle heure de début?', function(response, convo) {
-            var hSeule = /([0-2]?[0-9])(?=(h|H)))/
+            var hSeule = /([0-2]?[0-9])(?=(h|H))/
             var hMin = /([0-2]?[0-9])(?:(h|H|:))([0-6]?[0-9])/
             var res = response.text;
             var tHS = hSeule.exec(res);
