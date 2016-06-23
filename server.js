@@ -446,7 +446,6 @@ bot.startRTM(err => {
         var res = response.text;
         var tDM = dateMois.exec(res);
         var tDS = dateSeule.exec(res);
-        convo.say(mois);
         if ( !(tDM === null)){
           var now = moment();
           var mois = moment().get('M'); //mois actuel
