@@ -440,13 +440,13 @@ bot.startRTM(err => {
     askJour = function(response, convo){
       var dateSeule = /([0-3]?[0-9])/; 
       var dateMois = /([0-3]?[0-9]) (janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre)/;
-      var jourSeul = /dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi/;
+      var jourSeul = /(dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi)/;
       convo.ask('Donne moi une date ?', function(response, convo) {
         convo.next();
         var res = response.text;
+        var tJS = jourSeul.exec(res);
         var tDM = dateMois.exec(res);
         var tDS = dateSeule.exec(res);
-        var tJS = jourSeul.exec(res);
         if ( !(tDM === null)){
           var mois = moment().get('M'); //mois actuel
           var m=moment().month(tDM[2]).date(tDM[1]);
