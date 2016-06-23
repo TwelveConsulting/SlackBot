@@ -476,7 +476,7 @@ bot.startRTM(err => {
           else {
             if (!(tJS === null)){
               var jour = moment().date();
-              convo.say(tJS);
+              convo.say(typeof(tJS);
               convo.next();
               var n;
               switch (tJS){
