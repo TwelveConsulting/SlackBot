@@ -240,7 +240,7 @@ bot.startRTM(err => {
             var res = response.text;
             var tHS = hSeule.exec(res);
             var tHM = hMin.exec(res);
-            if (!(tHS === null)) {
+            if (!(tHM === null)) {
               dateDeb.hour(tHM[1]).minute(tHM[3]).seconds(0);
             }
             else{
