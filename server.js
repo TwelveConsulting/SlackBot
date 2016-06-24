@@ -248,8 +248,6 @@ bot.startRTM(err => {
             }
             askHeureFin(response,convo);
             convo.next();
-            convo.say(dateDeb.format('LLLL'));
-            convo.next();
           })
         }
         askHeureFin = function(response, convo) {
@@ -265,8 +263,6 @@ bot.startRTM(err => {
             else{
               dateFin.hour(tHS[1]).minute(0).seconds(0);
             }
-            convo.say(dateDeb.format());
-            convo.next();
             askNom(response,convo);
             convo.next();
           });
@@ -288,7 +284,7 @@ bot.startRTM(err => {
               "title": "Rendez-vous Salle Twelve",
               "fields": [
                 { "title": "Jour",
-                 "value": date.weekday()+dateDeb.format('LL'),
+                 "value": dateDeb.format('dddd D MMMM'),
                  "short":"true"
                 },
                 { "title": "Organisateur",
@@ -342,14 +338,20 @@ bot.startRTM(err => {
       "am": "",
       "pm": "" 
     };
+    var m = moment();
+    var m2 = moment();
+    var ajd = m;
+    var hier = m2.subtract(1, 'days');
+    var ajdPrint = "Journée du "+ajd.format("dddd D MMMM");
+    var hierPrint = "Journée du "+hier.format("dddd D MMMM");
     askTimesheets = function(response, convo) {
       var reply_with_attachments = {
         'text': `Voici, ce que vous avez fait hier.`,
         "attachments": [ {
-          "fallback": "Journée du 19 juin",
+          "fallback": "Hier",
           "color": "#e8878e",
 
-          "title": "Journée du 19 juin",
+          "title": hierPrint,
 
           "fields": [
             {  "title": "Matin",
@@ -372,10 +374,10 @@ bot.startRTM(err => {
           var attachment_timesheetajd = {
             'text': `D\'accord. Je rentre ca dans le CRM.`,
             "attachments": [ {
-              "fallback": "Journée du 20 juin",
+              "fallback": "Ajd",
               "color": "#88221e",
 
-              "title": "Journée du 20 juin",
+              "title": ajdPrint,
 
               "fields": [
                 {  "title": "Matin",
@@ -509,9 +511,9 @@ bot.startRTM(err => {
       var attachment_timesheetajd = {
         'text': `D\'accord. Je rentre ca dans le CRM.`,
         "attachments": [ {
-          "fallback": "Journée du 20 juin",
+          "fallback": "Ajd",
           "color": "#88221e",
-          "title": "Journée du 20 juin",
+          "title": ajdPrint,
           "fields": [
             {  "title": "Matin",
                "value": timesheet.am,
