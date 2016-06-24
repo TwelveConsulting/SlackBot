@@ -265,6 +265,8 @@ bot.startRTM(err => {
             else{
               dateFin.hour(tHS[1]).minute(0).seconds(0);
             }
+            convo.say(dateDeb.format());
+            convo.next();
             askNom(response,convo);
             convo.next();
           });
