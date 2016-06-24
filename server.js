@@ -288,7 +288,7 @@ bot.startRTM(err => {
               "title": "Rendez-vous Salle Twelve",
               "fields": [
                 { "title": "Jour",
-                 "value": dateDeb.format('LL'),
+                 "value": date.weekday()+dateDeb.format('LL'),
                  "short":"true"
                 },
                 { "title": "Organisateur",
