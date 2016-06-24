@@ -162,6 +162,8 @@ bot.startRTM(err => {
               }   
               dateDeb = m;
               dateFin = m2;
+              askHeureDebut(response, convo);
+              convo.next();
             }
             else {  
               if (!( tDS === null)){
@@ -177,6 +179,8 @@ bot.startRTM(err => {
                 }
                 dateDeb = m;
                 dateFin =m2;
+                askHeureDebut(response, convo);
+                convo.next();
               }
               else {
                 if (!(tJS === null)){
@@ -204,7 +208,7 @@ bot.startRTM(err => {
                       break;
                     default:
                      n=0;
-                }
+                  }
                 var m = moment().day(n);
                 var m2 = moment().day(n);
                 var dateVoulue = m.get('date');
@@ -214,6 +218,8 @@ bot.startRTM(err => {
                 }
                 dateDeb = m;
                 dateFin =m2;
+                askHeureDebut(response, convo);
+                convo.next();
                 }
                 else {
                   if (res = "demain"){
@@ -223,13 +229,34 @@ bot.startRTM(err => {
                     m2=m2.add(1, 'day');
                     dateDeb = m;
                     dateFin =m2;
+                    askHeureDebut(response, convo);
+                    convo.next();
+                  }
+                  else{
+                    if ((res = "Ajd")|(res = "ajd")|(res = "Aujourd'hui")|(res = "aujourd'hui")|(res = "tout à l'heure")){
+                      var m = moment();
+                      var m2 = moment();
+                      dateDeb = m;
+                      dateFin =m2;
+                      askHeureDebut(response, convo);
+                      convo.next();
+                    }
+                    else{
+                      if (res = abandon){
+                        convo.say('OK désolé de vous avoir dérangé(e)');
+                        convo.next();
+                      }
+                      else {
+                        convo.say("Je n'ai pas compris votre demande. Veuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
+                        convo.next();
+                        askDate(response,convo);
+                        convo.next();
+                      }
+                    }
                   }
                 }
               }
             }
-            //convo.say('Ok. La reunion aura lieu le ' + value.date)
-            askHeureDebut(response, convo);
-            convo.next();
           });
         }
       
