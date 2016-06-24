@@ -222,7 +222,7 @@ bot.startRTM(err => {
                 convo.next();
                 }
                 else {
-                  if (res = "demain"){
+                  if (res == "demain"){
                     var m = moment();
                     var m2 = moment();
                     m=m.add(1, 'day');
@@ -233,7 +233,7 @@ bot.startRTM(err => {
                     convo.next();
                   }
                   else{
-                    if ((res = "Ajd")|(res = "ajd")|(res = "Aujourd'hui")|(res = "aujourd'hui")|(res = "tout à l'heure")){
+                    if ((res == "Ajd")|(res == "ajd")|(res == "Aujourd'hui")|(res == "aujourd'hui")|(res == "tout à l'heure")){
                       var m = moment();
                       var m2 = moment();
                       dateDeb = m;
@@ -242,7 +242,7 @@ bot.startRTM(err => {
                       convo.next();
                     }
                     else{
-                      if (res = abandon){
+                      if (res == abandon){
                         convo.say('OK désolé de vous avoir dérangé(e)');
                         convo.next();
                       }
