@@ -242,7 +242,7 @@ bot.startRTM(err => {
                       convo.next();
                     }
                     else{
-                      if (res == abandon){
+                      if (res == "abandon"){
                         convo.say('OK désolé de vous avoir dérangé(e)');
                         convo.next();
                       }
