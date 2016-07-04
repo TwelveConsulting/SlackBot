@@ -683,10 +683,35 @@ bot.startRTM(err => {
 
 -------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------*/
-  controller.hears(['nom','identifiant','email'],'direct_message,direct_mention', (bot,message) => {
-    var infos=users.profile.get(xoxp-48833382512-48837226343-56602611216-edabb56f39);
-    bot.reply(message, typeof(infos));
-  })
+var https = require('https');
+ 
+function getCall() {
+    //initialize options values, the value of the method can be changed to POST to make https post calls
+    var userAccessToken = xoxp-48833382512-48837226343-56636563042-e67f96d742,
+    var options = {
+        host :  'https://slack.com/api/users.list',
+        port : 443,
+        path : '/debug_token?input_token=' + userAccessToken,
+        method : 'GET'
+    }
+ 
+    //making the https get call
+    var getReq = https.request(options, function(res) {
+        console.log("\nstatus code: ", res.statusCode);
+        res.on('data', function(data) {
+            console.log( JSON.parse(data) );
+        });
+    });
+ 
+    //end the request
+    getReq.end();
+    getReq.on('error', function(err){
+        console.log("Error: ", err);
+    }); 
+}
+ 
+getCall();
+
 
 
 app.post('/conges', conges.execute);
