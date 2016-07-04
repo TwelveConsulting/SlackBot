@@ -691,7 +691,7 @@ function getCall() {
     var options = {
         host :  'https://slack.com/api/users.list',
         port : 443,
-        path : '/debug_token?input_token=' + token,
+        path : '/token=' + token,
         method : 'GET'
     }
  
