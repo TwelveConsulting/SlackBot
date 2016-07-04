@@ -687,7 +687,7 @@ var https = require('https');
  
 function getCall() {
     //initialize options values, the value of the method can be changed to POST to make https post calls
-    var userAccessToken = xoxp-48833382512-48837226343-56636563042-e67f96d742;
+    var userAccessToken = 'xoxp-48833382512-48837226343-56636563042-e67f96d742';
     var options = {
         host :  'https://slack.com/api/users.list',
         port : 443,
