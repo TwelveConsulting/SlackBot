@@ -684,7 +684,7 @@ bot.startRTM(err => {
 -------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------*/
   controller.hears(['nom','identifiant','email'],'direct_message,direct_mention', (bot,message) => {
-    var infos=users.info;
+    var infos=users.profile.get(xoxp-48833382512-48837226343-56602611216-edabb56f39);
     bot.reply(message, typeof(infos));
   })
 
