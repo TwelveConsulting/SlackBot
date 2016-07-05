@@ -683,33 +683,10 @@ bot.startRTM(err => {
 
 -------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------*/
-var https = require('https');
- 
-function getCall() {
-    //initialize options values, the value of the method can be changed to POST to make https post calls
-    var options = {
-        host :  'https://slack.com/api/users.list',
-        port : 443,
-        path : '/?token=xoxp-48833382512-48837226343-56636563042-e67f96d742',
-        method : 'GET'
-    }
- 
-    //making the https get call
-    var getReq = https.request(options, function(res) {
-        console.log("\nstatus code: ", res.statusCode);
-        res.on('data', function(data) {
-            console.log( JSON.parse(data) );
-        });
-    });
- 
-    //end the request
-    getReq.end();
-    getReq.on('error', function(err){
-        console.log("Error: ", err);
-    }); 
-}
- 
-getCall();
+
+bot.api.users.list({},function(err,response) {
+  //Do something...
+})
 
 
 
