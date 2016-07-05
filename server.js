@@ -167,8 +167,6 @@ bot.startRTM(err => {
             {
               pattern: "yes",
               callback: function(reply, convo) {
-                convo.say('FABULOUS!');
-                convo.next();
                 askDate(response, convo);
                 convo.next();
               }
@@ -176,8 +174,6 @@ bot.startRTM(err => {
             {
               pattern: "no",
               callback: function(reply, convo) {
-                convo.say('Too bad');
-                convo.next();
                 convo.say('OK désolé de vous avoir dérangé(e)');
                 convo.next();
               }
