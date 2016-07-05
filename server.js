@@ -8,16 +8,16 @@ var moment = require('moment');
 moment.locale('fr');
 
 const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
+var Botkit = require('botkit');
+var controller = Botkit.slackbot();
 
-var Botkit = require('botkit'),
-    formatter = require('./modules/slack-formatter'),
-    //salesforce = require('./modules/salesforce'),
-    controller = Botkit.slackbot(),
-    bot = controller.spawn({
-      token: SLACK_BOT_TOKEN
-    });
+controller.configureSlackApp({
+  clientId: process.env.clientId,
+  clientSecret: process.env.clientSecret,
+  redirectUri: 'http://localhost:3002',
+  scopes: ['incoming-webhook','team:read','users:read','channels:read','im:read','im:write','groups:read','emoji:read','chat:write:bot']
+});
 
-// set up a botkit app to expose oauth and webhook endpoints
 controller.setupWebserver(process.env.port,function(err,webserver) {
 
   // set up web endpoints for oauth, receiving webhooks, etc.
@@ -27,6 +27,15 @@ controller.setupWebserver(process.env.port,function(err,webserver) {
     .createWebhookEndpoints(controller.webserver);
 
 });
+/*var Botkit = require('botkit'),
+    formatter = require('./modules/slack-formatter'),
+    //salesforce = require('./modules/salesforce'),
+    controller = Botkit.slackbot(),*/
+var bot = controller.spawn({
+      token: SLACK_BOT_TOKEN
+    });
+
+
 
 
 app.set('port', process.env.PORT || 5000);
