@@ -10,11 +10,6 @@ moment.locale('fr');
 const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 var Botkit = require('botkit');
 var controller = Botkit.slackbot();
-
-var Botkit = require('botkit'),
-    formatter = require('./modules/slack-formatter'),
-    //salesforce = require('./modules/salesforce'),
-    controller = Botkit.slackbot(),
 var bot = controller.spawn({
       token: SLACK_BOT_TOKEN
     });
