@@ -131,7 +131,7 @@ bot.startRTM(err => {
         var dateDeb;
         var dateFin;
         askReserver = function(response1, convo) {
-          convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
+          /*convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
             if (response.text == 'non') {
               convo.say('OK désolé de vous avoir dérangé(e)');
               convo.next();
@@ -140,8 +140,56 @@ bot.startRTM(err => {
               askDate(response, convo);
               convo.next();
            }
-          });
-        }
+          });*/
+          convo.ask({
+            attachments:[
+              {
+                title: 'Voulez vous réservez la salle de réunion de chez Twelve Consulting?',
+                callback_id: '123',
+                attachment_type: 'default',
+                  actions: [
+                  {
+                    "name":"yes",
+                    "text": "Oui",
+                    "value": "yes",
+                    "type": "button",
+                  },
+                  {
+                    "name":"no",
+                    "text": "Non",
+                    "value": "no",
+                    "type": "button",
+                  }
+                ]
+              }
+            ]
+          },[
+            {
+              pattern: "yes",
+              callback: function(reply, convo) {
+                convo.say('FABULOUS!');
+                convo.next();
+                askDate(response, convo);
+                convo.next();
+              }
+            },
+            {
+              pattern: "no",
+              callback: function(reply, convo) {
+                convo.say('Too bad');
+                convo.next();
+                convo.say('OK désolé de vous avoir dérangé(e)');
+                convo.next();
+              }
+            },
+            {   
+              default: true,
+              callback: function(reply, convo) {
+                // do nothing
+              }
+            }
+          ]);
+        };
         askDate = function(response, convo) {
           convo.ask('A quelle date?', function(response, convo) {
             var dateSeule = /([0-3]?[0-9])/; 
