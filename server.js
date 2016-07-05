@@ -17,6 +17,17 @@ var Botkit = require('botkit'),
       token: SLACK_BOT_TOKEN
     });
 
+// set up a botkit app to expose oauth and webhook endpoints
+controller.setupWebserver(process.env.port,function(err,webserver) {
+
+  // set up web endpoints for oauth, receiving webhooks, etc.
+  controller
+    .createHomepageEndpoint(controller.webserver)
+    .createOauthEndpoints(controller.webserver,function(err,req,res) { ... })
+    .createWebhookEndpoints(controller.webserver);
+
+});
+
 
 app.set('port', process.env.PORT || 5000);
 
