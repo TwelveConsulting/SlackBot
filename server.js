@@ -1,20 +1,14 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
-    //auth = require('./modules/auth'),
     conges = require('./modules/conges'),
     app = express();
 var moment = require('moment');
 moment.locale('fr');
 
-//const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 var Botkit = require('botkit'),
-    /*controller = Botkit.slackbot(),
-    bot = controller.spawn({
-      token: SLACK_BOT_TOKEN
-    });*/
     controller = Botkit.slackbot({
-      interactive_replies: true, // tells botkit to send button clicks into conversations
-      //json_file_store: './db_storage',
+      interactive_replies: true,
+      json_file_store: './db_storage.json',
     }).configureSlackApp(
     {
         clientId: process.env.clientId,
@@ -41,12 +35,20 @@ app.set('port', process.env.PORT || 5000);
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+
 bot.startRTM(err => {
   if (err) {
     throw new Error('Could not connect to Slack');
   }
 });
-
+//auth = require('./modules/auth'),
+//const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
+/*controller = Botkit.slackbot(),
+    bot = controller.spawn({
+      token: SLACK_BOT_TOKEN
+    });*/
+    // tells botkit to send button clicks into conversations
+      //json_file_store: './db_storage',
 // Fonction HELLO
 /*
 
