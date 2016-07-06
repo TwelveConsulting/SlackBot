@@ -26,7 +26,9 @@ controller.setupWebserver(process.env.port,function(err,webserver) {
     }
   });
 });
-
+var bot = controller.spawn({
+      token: SLACK_BOT_TOKEN
+    });
 
 
 
