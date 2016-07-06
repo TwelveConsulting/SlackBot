@@ -140,7 +140,8 @@ bot.startRTM(err => {
               askDate(response, convo);
               convo.next();
            }
-          });/*
+          });
+        }/*
           convo.ask({
             attachments:[
               {
@@ -384,8 +385,8 @@ bot.startRTM(err => {
             }]
          };
         convo.say(reply_with_attachments);
-      }
-      bot.startConversation(message, askReserver);
+        }
+        bot.startConversation(message, askReserver);
     });
 
 // Time sheets ( test d'arbre de conversation )
