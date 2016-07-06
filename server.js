@@ -5,7 +5,7 @@ var express = require('express'),
 var moment = require('moment');
 moment.locale('fr');
 
-var db = new Store("./db_storage.json");
+var db = new Store("data",{type:'single'});
 var Botkit = require('botkit'),
     controller = Botkit.slackbot({
       interactive_replies: true,
