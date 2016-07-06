@@ -49,6 +49,11 @@
         "description": "oAuth client secret",
         "value":"",
         "required":false
+    },
+    "port": {
+        "description": "oAuth client secret",
+        "value":"",
+        "required":false
     }
   }
 }
