@@ -2,17 +2,40 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     //auth = require('./modules/auth'),
     conges = require('./modules/conges'),
-    //hello = require('./modules/hello')
     app = express();
 var moment = require('moment');
 moment.locale('fr');
 
-const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
+//const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 var Botkit = require('botkit'),
-    controller = Botkit.slackbot(),
+    /*controller = Botkit.slackbot(),
     bot = controller.spawn({
       token: SLACK_BOT_TOKEN
-    });
+    });*/
+
+
+
+
+var controller = Botkit.slackbot({
+  interactive_replies: true, // tells botkit to send button clicks into conversations
+  json_file_store: './db_slackbutton_bot/',
+}).configureSlackApp(
+  {
+    clientId: process.env.clientId,
+    clientSecret: process.env.clientSecret,
+    scopes: ['bot','users.profile:read']
+  }
+); 
+controller.setupWebserver(process.env.port,function(err,webserver) {
+  controller.createWebhookEndpoints(controller.webserver);
+  controller.createOauthEndpoints(controller.webserver,function(err,req,res) {
+    if (err) {
+      res.status(500).send('ERROR: ' + err);
+    } else {
+      res.send('Success!');
+    }
+  });
+});
 
 
 
