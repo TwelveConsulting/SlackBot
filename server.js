@@ -131,7 +131,7 @@ bot.startRTM(err => {
         var dateDeb;
         var dateFin;
         askReserver = function(response1, convo) {
-          /*convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
+          convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
             if (response.text == 'non') {
               convo.say('OK désolé de vous avoir dérangé(e)');
               convo.next();
@@ -140,7 +140,7 @@ bot.startRTM(err => {
               askDate(response, convo);
               convo.next();
            }
-          });*/
+          });/*
           convo.ask({
             attachments:[
               {
@@ -185,7 +185,7 @@ bot.startRTM(err => {
               }
             }
           ]);
-        };
+        };*/
         askDate = function(response, convo) {
           convo.ask('A quelle date?', function(response, convo) {
             var dateSeule = /([0-3]?[0-9])/; 
