@@ -39,6 +39,16 @@
         "description": "Slack token for the case slash command",
         "value":"",
         "required":false
+    },
+    "clientId": {
+        "description": "oAuth client id",
+        "value":"",
+        "required":false
+    },
+    "clientSecret": {
+        "description": "oAuth client secret",
+        "value":"",
+        "required":false
     }
   }
 }
