@@ -5,10 +5,10 @@ var express = require('express'),
 var moment = require('moment');
 moment.locale('fr');
 
+var db = new Store("./db_storage.json");
 var Botkit = require('botkit'),
     controller = Botkit.slackbot({
       interactive_replies: true,
-      json_file_store: './db_storage.json',
     }).configureSlackApp(
     {
         clientId: process.env.clientId,
