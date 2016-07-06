@@ -14,7 +14,7 @@ var Botkit = require('botkit'),
     });*/
     controller = Botkit.slackbot({
       interactive_replies: true, // tells botkit to send button clicks into conversations
-      json_file_store: './db_storage',
+      //json_file_store: './db_storage',
     }).configureSlackApp(
     {
         clientId: process.env.clientId,
