@@ -4,6 +4,8 @@ var express = require('express'),
     app = express();
 var moment = require('moment');
 moment.locale('fr');
+var Store = require("jfs");
+var db = new Store("data");
 
 var db = new Store("data",{type:'single'});
 var Botkit = require('botkit'),
