@@ -13,7 +13,7 @@ const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 controller = Botkit.slackbot(),
     bot = controller.spawn({
       token: SLACK_BOT_TOKEN
-    });*
+    });
 
 /*controller.configureSlackApp({
   clientId: process.env.clientId,
