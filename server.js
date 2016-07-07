@@ -4,35 +4,18 @@ var express = require('express'),
     app = express();
 var moment = require('moment');
 moment.locale('fr');
-/*var Store = require("jfs");
-var db = new Store("data");
 
-var db = new Store("data",{type:'single'});
-var Botkit = require('botkit'),
-    controller = Botkit.slackbot({
-      interactive_replies: true,
-    }).configureSlackApp(
-    {
-        clientId: process.env.clientId,
-        clientSecret: process.env.clientSecret,
-        scopes: ['bot','users.profile:read']
-    }
-    ); 
-controller.setupWebserver(process.env.port,function(err,webserver) {
-  controller.createWebhookEndpoints(controller.webserver);
-  controller.createOauthEndpoints(controller.webserver,function(err,req,res) {
-    if (err) {
-      res.status(500).send('ERROR: ' + err);
-    } else {
-      res.send('Success!');
-    }
-  });
-});*/
 
 var Botkit = require('botkit');
 var controller = Botkit.slackbot();
+//auth = require('./modules/auth'),
+const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
+controller = Botkit.slackbot(),
+    bot = controller.spawn({
+      token: SLACK_BOT_TOKEN
+    });*
 
-controller.configureSlackApp({
+/*controller.configureSlackApp({
   clientId: process.env.clientId,
   clientSecret: process.env.clientSecret,
   redirectUri: 'http://localhost:3002',
@@ -59,7 +42,7 @@ controller.setupWebserver(process.env.port,function(err,webserver) {
 const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN; 
 var bot = controller.spawn({
       token: SLACK_BOT_TOKEN
-    });
+    });*/
 
 
 
