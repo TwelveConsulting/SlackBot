@@ -306,7 +306,10 @@ exports.start = start;
                           "conversation" : "Reunion",
                           "question" : "date",
                           "erreur" : res
-                        }
+                        };
+                        db.save(d, function(err, id){
+                          // id is a unique ID
+                        });
                         askDate(response,convo);
                         convo.next();
                       }
