@@ -303,9 +303,9 @@ exports.start = start;
                         convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
                         convo.next();
                         var erreur = {
-                          "conversation" = "Reunion",
-                          "question" = "date",
-                          "erreur" = res
+                          "conversation" : "Reunion",
+                          "question" : "date",
+                          "erreur" : res
                         }
                         askDate(response,convo);
                         convo.next();
