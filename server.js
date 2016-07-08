@@ -5,10 +5,14 @@ var express = require('express'),
     moment = require('moment'),
     http = require("http"),
     url = require("url"),
-    Botkit = require('botkit');
+    Botkit = require('botkit'),
+    Store = require("jfs");
 
 // Réglage de la langue pour le temps
 moment.locale('fr');
+
+// Construction du recueil de problème
+var db = new Store("./db_storage.json");
 
 // Construction des différents opérateurs
 var app = express(),
@@ -298,6 +302,11 @@ exports.start = start;
                       else {
                         convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
                         convo.next();
+                        var erreur = {
+                          "conversation" = "Reunion",
+                          "question" = "date",
+                          "erreur" = res
+                        }
                         askDate(response,convo);
                         convo.next();
                       }
@@ -369,7 +378,7 @@ exports.start = start;
             }
             askNom(response,convo);
             convo.next();
-          });
+          }); 
         }
         askNom = function(response, convo) {
           convo.ask('A quel nom dois-je mettre la réunion?', function(response, convo) {
