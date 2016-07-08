@@ -7,11 +7,29 @@ moment.locale('fr');
 
 
 var Botkit = require('botkit');
-var controller = Botkit.slackbot();controller.configureSlackApp({
+var controller = Botkit.slackbot();
+controller.configureSlackApp({
   clientId: process.env.clientId,
   clientSecret: process.env.clientSecret,
   redirectUri: 'http://localhost:3002',
-  scopes: ['incoming-webhook','team:read','users:read','channels:read','im:read','im:write','groups:read','emoji:read','chat:write:bot']
+  scopes: [ 
+    'incoming-webhook',
+    'bot',
+    'files:write:user',
+    'files:read',
+    'identity:basic',
+    'users:profile:read',
+    'users:profile:write',
+    'team:read',
+    'users:read',
+    'users:write'
+    'channels:read',
+    'im:read',
+    'im:write',
+    'groups:read',
+    'emoji:read',
+    'chat:write:bot'
+  ]
 });
 
 controller.setupWebserver(process.env.port,function(err,webserver) {

@@ -1,4 +1,4 @@
-var org = require('./auth').org,
+
 
     SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 
