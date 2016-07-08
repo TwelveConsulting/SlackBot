@@ -307,7 +307,7 @@ exports.start = start;
                           "question" : "date",
                           "erreur" : res
                         };
-                        db.save(d, function(err, id){
+                        db.save(erreur, function(err, id){
                           // id is a unique ID
                         });
                         askDate(response,convo);
