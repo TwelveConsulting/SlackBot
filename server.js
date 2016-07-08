@@ -79,7 +79,7 @@ exports.start = start;
 ----------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------*/
     
-    controller.hears(['conges'], 'direct_message', (bot, message) => {
+    controller.hears(['conges','congés'], 'direct_message', (bot, message) => {
       var reply_with_attachments = {
         'text': `Ok, voila tes congés.`,
         "attachments": [ {
@@ -129,7 +129,7 @@ exports.start = start;
 ----------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------*/
 
-    controller.hears(['salle','reunion'], 'direct_message,direct_mention', (bot, message) => {
+    controller.hears(['salle','reunion','réunion'], 'direct_message,direct_mention', (bot, message) => {
         var value ;
         var dateDeb;
         var dateFin;
@@ -296,7 +296,7 @@ exports.start = start;
                         convo.next();
                       }
                       else {
-                        convo.say("Je n'ai pas compris votre demande. Veuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
+                        convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
                         convo.next();
                         askDate(response,convo);
                         convo.next();
@@ -320,7 +320,21 @@ exports.start = start;
               dateDeb.hour(tHM[1]).minute(tHM[3]).seconds(0);
             }
             else{
-              dateDeb.hour(tHS[1]).minute(0).seconds(0);
+              if (!(tHS === null)) {
+                dateDeb.hour(tHS[1]).minute(0).seconds(0);
+              }
+              else{
+                if (res == "abandon"){
+                  convo.say('OK désolé de vous avoir dérangé(e)');
+                  convo.next();
+                }
+                else {
+                  convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12h15 \" ou \" 12h \" ou répondre abandon.")
+                  convo.next();
+                  askHeureDebut(response,convo);
+                  convo.next();
+                }
+              }
             }
             askHeureFin(response,convo);
             convo.next();
@@ -337,7 +351,21 @@ exports.start = start;
               dateFin.hour(tHM[1]).minute(tHM[3]).seconds(0);
             }
             else{
-              dateFin.hour(tHS[1]).minute(0).seconds(0);
+              if (!(tHS === null)) {
+                dateFin.hour(tHS[1]).minute(0).seconds(0);
+              }
+              else{
+                if (res == "abandon"){
+                  convo.say('OK désolé de vous avoir dérangé(e)');
+                  convo.next();
+                }
+                else {
+                  convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12h15 \" ou \" 12h \" ou répondre abandon.")
+                  convo.next();
+                  askHeureFin(response,convo);
+                  convo.next();
+                }
+              }
             }
             askNom(response,convo);
             convo.next();
