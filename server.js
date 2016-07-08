@@ -307,8 +307,8 @@ exports.start = start;
                           "question" : "date",
                           "erreur" : res
                         }
-                        askDate(response,convo);
-                        convo.next();
+                        /*askDate(response,convo);
+                        convo.next();*/
                       }
                     }
                   }
