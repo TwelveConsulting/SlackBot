@@ -513,7 +513,20 @@ exports.start = start;
         convo.next();
         }
         else{
-          askMatin(response,convo);
+          if (response.text == 'non') {
+            askMatin(response,convo);
+          }else{
+            if (res == "abandon"){
+              convo.say('OK désolé de vous avoir dérangé(e)');
+              convo.next();
+            }
+            else {
+              convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" oui \" ou \" non\" ou répondre abandon.")
+              convo.next();
+              askHeureDebut(response,convo);
+              convo.next();
+            }
+          }
         }
       });
     }
@@ -563,13 +576,19 @@ exports.start = start;
           }
         },
         {
-        default: true,
+        pattern: 'abandon',
         callback: function(response,convo) {
-          convo.say('Je suis désolé, je ne peux répondre à votre requête. Je vous propose d\'aller directement sur le CRM pour remplir vos timesheets'
-                    +'\n'+ 'Voici le lien :'
-                    +'\n'+ 'https://twelve.my.salesforce.com/home/home.jsp');
+          convo.say('Je suis désolé, je ne peux répondre à votre requête. Je vous propose d\'aller directement sur le CRM pour remplir vos timesheets/ \n OK désolé de vous avoir dérangé(e)');
           convo.next();
           }
+        },
+        {
+        default: true,
+        callback: function(response,convo) {
+          convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple \" 2 \" ou répondre abandon.")
+          convo.next();
+          askMatin(response,convo);
+          convo.next();
         }
       ]);
     }
@@ -776,7 +795,88 @@ bot.api.users.list({},function(err,response) {
   //Do something...
 })
 
+/*
 
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+
+
+                  ///////////   ///////////   ///////////     
+                 ///     ///       ///           /// 
+                ///     ///       ///           ///    
+               ///////////       ///           /// 
+              ///     ///       ///           /// 
+             ///     ///       ///           /// 
+
+
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------*/
+ controller.hears(['att'], 'direct_message,direct_mention,mention', (bot,message) => {
+      var reply_with_attachments = {
+        'text': `Ok, voila tes congés.`,
+        "attachments": [ {
+          "fallback": "Jours de congés restants",
+          "color": "#dd4124",
+          "pretext": "Pré-texte",
+          "author_name": "Gaspard Hosteins",
+          "author_link": "https://www.linkedin.com/in/gaspard-hosteins-177604107?trk=nav_responsive_tab_profile",
+          "author_icon": "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAfdAAAAJDE0MmZiNzE4LTVjNWEtNDY2ZC1iYTQyLWMzZjJmZTNkZDA2YQ.jpg",
+
+          "title": "Titre test attachement",
+          "title_link": "http://www.twelve-consulting.com",
+          "text": "texte texte texte texte texte texte texte texte texte \n texte texte texte texte texte texte texte texte texte \n \n texte texte texte texte texte texte texte texte texte \n ",
+          "callback_id": '123',
+          "attachment_type": 'default',
+          "actions": [
+            {
+              "name":"bouton 1",
+              "text": "bouton 1",
+              "value": "bouton 1",
+              "type": "button",
+            },
+            {
+              "name":"bouton 2",
+              "text": "bouton 2",
+              "value": "bouton 2",
+              "type": "button",
+            },
+            {
+              "name": "bouton 3",
+              "text": "bouton 3",
+              "style": "danger",
+              "type": "button",
+              "value": "bouton 3",
+              "confirm": {
+                "title": "Are you sure?",
+                "text": "Vous etes surs?",
+                "ok_text": "Yes",
+                "dismiss_text": "No"
+              }
+            }
+          ]
+          "fields": [
+            { "title": "Champ 1",
+              "value": "valeur",
+              "short":"true"
+            },
+            {   "title": "Champ 2",
+              "value": "valeur",
+              "short": "true"
+            },
+            {   "title": "Champ 3",
+              "value": "cette fois si la réponse est longue. cette fois si la réponse est longue. cette fois si la réponse est longue.",
+              "short": "false"
+            }
+          ],
+          
+          "image_url": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-full.png", 
+          "thumb_url": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
+          "footer": "Twelve consulting",
+          "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
+        }]
+      }
+      bot.reply(message, reply_with_attachments);
+    });
 
 app.post('/conges', conges.execute);
 app.listen(app.get('port'), function () {
