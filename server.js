@@ -825,7 +825,7 @@ bot.api.users.list({},function(err,response) {
 
           "title": "Titre test attachement",
           "title_link": "http://www.twelve-consulting.com",
-          "text": "texte texte texte texte texte texte texte texte texte \n texte texte texte texte texte texte texte texte texte \n \n texte texte texte texte texte texte texte texte texte \n ",
+          "text": "texte texte texte texte texte texte texte texte texte \n texte texte texte texte texte texte texte texte texte \n texte texte texte texte texte texte texte texte texte \n ",
           "callback_id": '123',
           "attachment_type": 'default',
           "actions": [
@@ -865,13 +865,12 @@ bot.api.users.list({},function(err,response) {
               "short": "true"
             },
             {   "title": "Champ 3",
-              "value": "cette fois si la réponse est longue. cette fois si la réponse est longue. cette fois si la réponse est longue.",
+              "value": "cette fois si la réponse est longue.  cette fois si la réponse est longue. \n",
               "short": "false"
             }
           ],
           
           "image_url": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-full.png", 
-          "thumb_url": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
           "footer": "Twelve consulting",
           "footer_icon": "http://www.twelve-consulting.com/wp-content/uploads/2015/02/logo-TWELVE-small.png",
         }]
