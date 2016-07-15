@@ -589,6 +589,7 @@ exports.start = start;
           convo.next();
           askMatin(response,convo);
           convo.next();
+          }
         }
       ]);
     }
