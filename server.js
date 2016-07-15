@@ -854,7 +854,7 @@ bot.api.users.list({},function(err,response) {
                 "dismiss_text": "No"
               }
             }
-          ]
+          ],
           "fields": [
             { "title": "Champ 1",
               "value": "valeur",
