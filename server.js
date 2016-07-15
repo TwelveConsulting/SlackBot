@@ -814,7 +814,7 @@ bot.api.users.list({},function(err,response) {
 -------------------------------------------------------------------------------------------------------------*/
  controller.hears(['att'], 'direct_message,direct_mention,mention', (bot,message) => {
       var reply_with_attachments = {
-        'text': `Ok, voila tes congés.`,
+        'text': `texte.`,
         "attachments": [ {
           "fallback": "Jours de congés restants",
           "color": "#dd4124",
