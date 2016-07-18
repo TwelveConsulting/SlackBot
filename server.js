@@ -136,7 +136,13 @@ exports.start = start;
                       'calendrier (.*) réunion','réunion (.*) calendrier',
                       'disponibilité (.*) salle', 'salle (.*) disponibilité',
                       'disponibilité (.*) reunion','reunion (.*) disponibilité',
-                      'disponibilité (.*) réunion','réunion (.*) disponibilité'], 
+                      'disponibilité (.*) réunion','réunion (.*) disponibilité',
+                      'calendrier salle', 'salle calendrier',
+                      'calendrier reunion','reunion calendrier',
+                      'calendrier réunion','réunion calendrier',
+                      'disponibilité salle', 'salle disponibilité',
+                      'disponibilité reunion','reunion disponibilité',
+                      'disponibilité réunion','réunion disponibilité'], 
                       'direct_message,direct_mention', (bot, message) => {
                         bot.reply(message,'voici le calendrier de la salle de réunion de chez twelve'+'\n'+
                         'https://outlook.office365.com/owa/calendar/fdf80680bce74056a1fe3895f5734b8e@twelve-consulting.com/25ddfe4d36894a1585bf8f9191fe970711246318544056836448/calendar.html')
