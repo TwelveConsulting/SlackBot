@@ -455,14 +455,18 @@ exports.start = start;
     };
     var m = moment();
     var m2 = moment();
+    var m3 = moment().day(1);
     var ajd = m;
-    var hier = m2.subtract(1, 'days');
+    var hier = m ;
+    if (7*((m3.get('date')-hier.get('date'))/7)=(m3.get('date')-hier.get('date'))) {
+      hier = moment().substract(3,'days')
+    }
+    else {
+      hier = moment().substract(1,'days')
+    };
     var ajdPrint = "Journée du "+ajd.format("dddd D MMMM");
     var hierPrint = "Journée du "+hier.format("dddd D MMMM");
     askTimesheets = function(response, convo) {
-      var j = hier.days();
-      convo.say(j);
-      convo.next();
       var reply_with_attachments = {
         'text': `Voici, ce que vous avez fait hier.`,
         "attachments": [ {
