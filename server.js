@@ -329,16 +329,18 @@ exports.start = start;
                         convo.next();
                       }
                       else {
+                        var instant = moment();
+                        var cetInstant = moment.format('LT');
+                        var erreur = { 
+                          'conversation' : 'reunion',
+                          'question' : 'date',
+                          'erreur' : res,
+                          'date' : cetInstant
+                        };
+                        console.log(erreur);
+                        convo.next();
                         convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
                         convo.next();
-                        var erreur = {
-                          "conversation" : "Reunion",
-                          "question" : "date",
-                          "erreur" : res
-                        };
-                        db.save(erreur, function(err, id){
-                          // id is a unique ID
-                        });
                         askDate(response,convo);
                         convo.next();
                       }
