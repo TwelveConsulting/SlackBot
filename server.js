@@ -330,7 +330,7 @@ exports.start = start;
                       }
                       else {
                         var instant = moment();
-                        var cetInstant = moment.format('LT');
+                        var cetInstant = moment().format('LT');
                         var erreur = { 
                           'conversation' : 'reunion',
                           'question' : 'date',
