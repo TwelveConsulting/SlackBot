@@ -460,10 +460,10 @@ exports.start = start;
     var hier = m ;
     var n = (7*((m3.get('date')-hier.get('date'))/7) - (m3.get('date')-hier.get('date')))
     if (n == 0) {
-      hier = moment().substract(3,'days')
+      hier = moment().subtract(3,'days')
     }
     else {
-      hier = moment().substract(1,'days')
+      hier = moment().subtract(1,'days')
     };
     var ajdPrint = "Journée du "+ajd.format("dddd D MMMM");
     var hierPrint = "Journée du "+hier.format("dddd D MMMM");
