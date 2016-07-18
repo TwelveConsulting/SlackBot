@@ -460,6 +460,9 @@ exports.start = start;
     var ajdPrint = "Journée du "+ajd.format("dddd D MMMM");
     var hierPrint = "Journée du "+hier.format("dddd D MMMM");
     askTimesheets = function(response, convo) {
+      var j = hier.days();
+      convo.say(j);
+      convo.next();
       var reply_with_attachments = {
         'text': `Voici, ce que vous avez fait hier.`,
         "attachments": [ {
