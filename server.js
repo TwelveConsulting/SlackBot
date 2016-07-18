@@ -453,14 +453,16 @@ exports.start = start;
       "am": "",
       "pm": "" 
     };
-    var m = moment();
-    var m2 = moment();
-    var m3 = moment().day(1);
-    var ajd = m;
-    var hier = m ;
+    var m = moment(),
+        m2 = moment(),
+        m3 = moment().day(1),
+        ajd = m,
+        hier = m,
+        derJour = 'hier';
     var n = (7*((m3.get('date')-hier.get('date'))/7) - (m3.get('date')-hier.get('date')))
     if (n == 0) {
-      hier = moment().subtract(3,'days')
+      hier = moment().subtract(3,'days'),
+      derJour = 'vendredi dernier'
     }
     else {
       hier = moment().subtract(1,'days')
@@ -469,7 +471,7 @@ exports.start = start;
     var hierPrint = "Journée du "+hier.format("dddd D MMMM");
     askTimesheets = function(response, convo) {
       var reply_with_attachments = {
-        'text': `Voici, ce que vous avez fait hier.`,
+        'text': 'Voici, ce que vous avez fait '+derJour,
         "attachments": [ {
           "fallback": "Hier",
           "color": "#e8878e",
