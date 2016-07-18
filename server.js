@@ -458,7 +458,8 @@ exports.start = start;
     var m3 = moment().day(1);
     var ajd = m;
     var hier = m ;
-    if (7*((m3.get('date')-hier.get('date'))/7)=(m3.get('date')-hier.get('date'))) {
+    var n = (7*((m3.get('date')-hier.get('date'))/7) - (m3.get('date')-hier.get('date')))
+    if (n == 0) {
       hier = moment().substract(3,'days')
     }
     else {
