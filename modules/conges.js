@@ -1,5 +1,3 @@
-
-
     SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 
 function execute(req, res) {

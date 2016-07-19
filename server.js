@@ -226,14 +226,75 @@ exports.start = start;
         };*/
         askDate = function(response, convo) {
           convo.ask('A quelle date?', function(response, convo) {
-            var dateSeule = /([0-3]?[0-9])/; 
-            var dateMois = /([0-3]?[0-9]) (janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre)/;
+            var dateSeule = /([0-3]?[0-9])/;
+            var dateNombre = /([0-3]?[0-9])\/([0-1]?[0-9])/ 
+            var dateMois = /([0-3]?[0-9]) (janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre|Janvier|février|Février|Fevrier|Mars|Avril|Mai|Juin|Juillet|août|Août|Aout|Septembre|Octobre|Novembre|décembre|Decembre|Décembre)/;
             var jourSeul = /(dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi)/;
             var res = response.text;
             var tJS = jourSeul.exec(res);
             var tDM = dateMois.exec(res);
             var tDS = dateSeule.exec(res);
+            var tDN = dateNombre.exec(res);
             if ( !(tDM === null)){
+              var n;
+              switch (tDM[2]){
+                case 'Janvier' :
+                  n='janvier';
+                  break;
+                case 'février' :
+                  n='fevrier';
+                  break;
+                case 'Février' :
+                  n='fevrier';
+                  break;
+                case 'Fevrier' :
+                  n='fevrier';
+                  break;
+                case 'Mars' :
+                  n='mars';
+                  break;
+                case 'Avril' :
+                  n='avril';
+                  break;
+                case 'Mai' :
+                  n='mai';
+                  break;
+                case 'Juin' :
+                  n='juin';
+                  break;
+                case 'Juillet' :
+                  n='juillet';
+                  break;
+                case 'Aout' :
+                  n='aout';
+                  break;  
+                case 'Août' :
+                  n='aout';
+                  break;
+                case 'août' :
+                  n='aout';
+                  break;
+                case 'Septembre' :
+                  n='septembre';
+                  break;
+                case 'Octobre' :
+                  n='octobre';
+                  break;
+                case 'Novembre' :
+                  n='novembre';
+                  break;
+                case 'Décembre' :
+                  n='decembre';
+                  break; 
+                case 'Decembre' :
+                  n='decembre';
+                  break;
+                case 'décembre' :
+                  n='decembre';
+                  break;              
+                default:
+                  n=tDM[2];
+              }
               var mois = moment().get('M'); //mois actuel
               var m=moment().month(tDM[2]).date(tDM[1]);
               var m2=moment().month(tDM[2]).date(tDM[1]);
@@ -247,102 +308,118 @@ exports.start = start;
               askHeureDebut(response, convo);
               convo.next();
             }
-            else {  
-              if (!( tDS === null)){
-                var ajd = moment().date();
-                var jourJ = tDS[1];
-                if (jourJ < ajd) {
-                  var m = moment().add(1, 'M').date(jourJ);
-                  var m2 = moment().add(1, 'M').date(jourJ);
-                }
-                else{
-                  var m = moment().date(jourJ);
-                  var m2 = moment().date(jourJ);
-                }
+            else {
+              if ( !(tDN === null)){
+                var mois = moment().get('M'); //mois actuel
+                var m=moment().month(tDN[2]).date(tDN[1]);
+                var m2=moment().month(tDN[2]).date(tDN[1]);
+                var moisVoulu = m.get('M');
+                if (moisVoulu<mois){
+                  var m=m.add(1, 'year');
+                  var m2=m2.add(1, 'year');
+                }   
                 dateDeb = m;
-                dateFin =m2;
+                dateFin = m2;
                 askHeureDebut(response, convo);
                 convo.next();
-              }
+              }  
               else {
-                if (!(tJS === null)){
-                  var jour = moment().date();
-                  var n;
-                  var jourJ=tJS[1];
-                  switch (tJS[1]){
-                    case 'lundi':
-                       n=1;
-                      break;
-                    case "mardi":
-                      n=2;
-                      break;
-                    case "mercredi":
-                      n=3;
-                      break;
-                    case "jeudi":
-                      n=4;
-                      break;
-                    case "vendredi":                        
-                      n=5;
-                      break
-                    case "samedi":
-                      n=6;
-                      break;
-                    default:
-                     n=0;
-                  }
-                var m = moment().day(n);
-                var m2 = moment().day(n);
-                var dateVoulue = m.get('date');
-                if (dateVoulue<jour) {
-                  var m = m.add(7, 'days');
-                  var m2 = m2.add(7, 'days');
-                }
-                dateDeb = m;
-                dateFin =m2;
-                askHeureDebut(response, convo);
-                convo.next();
-                }
-                else {
-                  if (res == "demain"){
-                    var m = moment();
-                    var m2 = moment();
-                    m=m.add(1, 'day');
-                    m2=m2.add(1, 'day');
-                    dateDeb = m;
-                    dateFin =m2;
-                    askHeureDebut(response, convo);
-                    convo.next();
+                if (!( tDS === null)){
+                  var ajd = moment().date();
+                  var jourJ = tDS[1];
+                  if (jourJ < ajd) {
+                    var m = moment().add(1, 'M').date(jourJ);
+                    var m2 = moment().add(1, 'M').date(jourJ);
                   }
                   else{
-                    if ((res == "Ajd")|(res == "ajd")|(res == "Aujourd'hui")|(res == "aujourd'hui")|(res == "tout à l'heure")){
+                    var m = moment().date(jourJ);
+                    var m2 = moment().date(jourJ);
+                  }
+                  dateDeb = m;
+                  dateFin =m2;
+                  askHeureDebut(response, convo);
+                  convo.next();
+                }
+                else {
+                  if (!(tJS === null)){
+                    var jour = moment().date();
+                    var n;
+                    var jourJ=tJS[1];
+                    switch (tJS[1]){
+                      case 'lundi':
+                         n=1;
+                        break;
+                      case "mardi":
+                        n=2;
+                        break;
+                      case "mercredi":
+                        n=3;
+                        break;
+                      case "jeudi":
+                        n=4;
+                        break;
+                      case "vendredi":                        
+                        n=5;
+                        break
+                      case "samedi":
+                        n=6;
+                        break;
+                      default:
+                        n=0;
+                    }
+                  var m = moment().day(n);
+                  var m2 = moment().day(n);
+                  var dateVoulue = m.get('date');
+                  if (dateVoulue<jour) {
+                    var m = m.add(7, 'days');
+                    var m2 = m2.add(7, 'days');
+                  }
+                  dateDeb = m;
+                  dateFin =m2;
+                  askHeureDebut(response, convo);
+                  convo.next();
+                  }
+                  else {
+                    if (res == "demain"){
                       var m = moment();
                       var m2 = moment();
+                      m=m.add(1, 'day');
+                      m2=m2.add(1, 'day');
                       dateDeb = m;
                       dateFin =m2;
                       askHeureDebut(response, convo);
                       convo.next();
                     }
                     else{
-                      if (res == "abandon"){
-                        convo.say('OK désolé de vous avoir dérangé(e)');
+                      if ((res == "Ajd")|(res == "ajd")|(res == "Aujourd'hui")|(res == "aujourd'hui")|(res == "tout à l'heure")){
+                        var m = moment();
+                        var m2 = moment();
+                        dateDeb = m;
+                        dateFin =m2;
+                        askHeureDebut(response, convo);
                         convo.next();
                       }
-                      else {
-                        var instant = moment();
-                        var cetInstant = moment().format('LT');
-                        var erreur = { 
-                          'conversation' : 'reunion',
-                          'question' : 'date',
-                          'erreur' : res,
-                          'date' : cetInstant
-                        };
-                        console.log(erreur);
-                        convo.next();
-                        convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
-                        convo.next();
-                        askDate(response,convo);
-                        convo.next();
+                      else{
+                        if (res == "abandon"){
+                          convo.say('OK désolé de vous avoir dérangé(e)');
+                          convo.next();
+                        }
+                        else {
+                          var instant = moment();
+                          var cetInstant = moment().format('LT');
+                          var erreur = { 
+                            'conversation' : 'reunion',
+                            'question' : 'date',
+                            'erreur' : res,
+                            'date' : cetInstant
+                          };
+                          console.log(erreur);
+                          convo.next();
+                          convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
+                          convo.next();
+                          askDate(response,convo);
+                          convo.next();
+                        } 
                       }
                     }
                   }
