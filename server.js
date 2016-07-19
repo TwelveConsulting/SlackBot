@@ -11,8 +11,8 @@ var express = require('express'),
 // Réglage de la langue pour le temps
 moment.locale('fr');
 
-// Construction du recueil de problème
-var db = new Store("./db_storage.json");
+/*// Construction du recueil de problème
+var db = new Store("./db_storage.json");*/
 
 // Construction des différents opérateurs
 var app = express(),
@@ -30,7 +30,7 @@ bot.startRTM(err => {
   }
 });
 
-//Mise en place de la liaison Outlook
+/*//Mise en place de la liaison Outlook
 function start(route, handle) {
   function onRequest(request, response) {
   var pathName = url.parse(request.url).pathname;
@@ -44,7 +44,7 @@ var port = 8000;
   console.log("Server has started. Listening on port: " + port + "...");
 }
 
-exports.start = start;
+exports.start = start;*/
 
 /*-----------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ exports.start = start;
         var dateFin;
         askReserver = function(response1, convo) {
           convo.ask('Voulez vous réservez la salle de réunion de chez Twelve Consulting? (oui/non)', function(response, convo){
-            if (response.text == 'non') {
+            if (!(response.text == 'oui')) {
               convo.say('OK désolé de vous avoir dérangé(e)');
               convo.next();
             }
@@ -416,8 +416,8 @@ exports.start = start;
                           console.log(erreur);
                           convo.next();
                           convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
-                          convo.next();
-                          askDate(response,convo);
+                          /*convo.next();
+                          askDate(response,convo);*/
                           convo.next();
                         } 
                       }
@@ -805,7 +805,7 @@ exports.start = start;
 -------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------*/
 
-  controller.hears(['jour'], 'direct_message', (bot, message) => {
+/*  controller.hears(['jour'], 'direct_message', (bot, message) => {
     askJour = function(response, convo){
       var dateSeule = /([0-3]?[0-9])/; 
       var dateMois = /([0-3]?[0-9]) (janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre)/;
@@ -890,7 +890,7 @@ exports.start = start;
       });   
     }
     bot.startConversation(message, askJour);
-  });
+  });*/
 
 // Récupération nom utilisateur et oAuth
 /*
