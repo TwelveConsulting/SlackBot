@@ -416,8 +416,8 @@ exports.start = start;*/
                           console.log(erreur);
                           convo.next();
                           convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
-                          /*convo.next();
-                          askDate(response,convo);*/
+                          convo.next();
+                          askDate(response,convo);
                           convo.next();
                         } 
                       }
