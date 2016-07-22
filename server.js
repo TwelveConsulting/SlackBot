@@ -413,7 +413,9 @@ exports.start = start;*/
                             'erreur' : res,
                             'date' : cetInstant
                           };
-                          console.log(erreur);
+                          app.get('/', function(request, response) {
+                            response.send(erreur);
+                          });
                           convo.next();
                           convo.say("Je n'ai pas compris votre demande. \nVeuillez réessayer en renvoyant par exemple  \" 12 juin \" ou répondre abandon.")
                           convo.next();

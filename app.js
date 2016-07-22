@@ -1,49 +1,31 @@
+//appels aux librairies
 var express = require('express'),
     bodyParser = require('body-parser'),
     conges = require('./modules/conges'),
-    app = express();
-var moment = require('moment');
-moment.locale('fr');
+    moment = require('moment'),
+    http = require("http"),
+    url = require("url"),
+    Botkit = require('botkit'),
+    Store = require("jfs");
 
+//création d'un server
+http.createServer(function (request, response) {
 
-var Botkit = require('botkit');
-var controller = Botkit.slackbot();
-controller.configureSlackApp({
-  clientId: process.env.clientId,
-  clientSecret: process.env.clientSecret,
-  redirectUri: 'http://localhost:3002',
-  scopes: [ 
-    'incoming-webhook',
-    'bot',
-    'files:write:user',
-    'files:read',
-    'identity:basic',
-    'users:profile:read',
-    'users:profile:write',
-    'team:read',
-    'users:read',
-    'users:write'
-    'channels:read',
-    'im:read',
-    'im:write',
-    'groups:read',
-    'emoji:read',
-    'chat:write:bot'
-  ]
-});
+   // Send the HTTP header 
+   // HTTP Status: 200 : OK
+   // Content Type: text/plain
+   response.writeHead(200, {'Content-Type': 'text/plain'});
+   
+   // Send the response body as "Hello World"
+   response.end('Hello World\n');
+}).listen(8000);
 
-controller.setupWebserver(process.env.port,function(err,webserver) {
+// Console will print the message
+console.log('Server running at http://127.0.0.1:8000/');
 
-  // set up web endpoints for oauth, receiving webhooks, etc.
-  controller
-    .createHomepageEndpoint(controller.webserver)
-    .createOauthEndpoints(controller.webserver,function(err,req,res) { 
-      if (err) {
-        res.status(500).send('ERROR: ' + err);
-      } else {
-        res.send('Success!');
-      } 
-    })
-    .createWebhookEndpoints(controller.webserver);
-
+//Utilisation de express
+var app = express();
+app.listen(3000);
+app.get('/', function(request, response) {
+  response.send('ca marche');
 });
